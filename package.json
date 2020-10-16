@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/iaxat/ubay/issues"
   },
-  "homepage": "https://github.com/iaxat/ubay#readme"
+  "homepage": "https://github.com/iaxat/ubay#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
