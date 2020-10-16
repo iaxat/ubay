@@ -1,3 +1,3 @@
-# upz
+# ubay
 
 Auction Platform
