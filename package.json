@@ -1,0 +1,22 @@
+{
+  "name": "ubay",
+  "version": "1.0.0",
+  "description": "A online platform to do auction",
+  "main": "main.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iaxat/ubay.git"
+  },
+  "author": "Lance Chetan Akshat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iaxat/ubay/issues"
+  },
+  "homepage": "https://github.com/iaxat/ubay#readme"
+}
