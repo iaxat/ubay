@@ -40,7 +40,7 @@ app.use(
 
 app.use(express.json());
 
-app.get("/", homeController.index);
+app.get("/", router);
 
 app.listen(app.get("port"), () => {
   console.log(`Server running at http://localhost:${app.get("port")}`);
