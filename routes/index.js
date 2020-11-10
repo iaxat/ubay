@@ -1,10 +1,17 @@
 "use strict";
 
 const router = require("express").Router(),
+homeRoutes = require("./homeRoutes"),
+shoppingRoutes = require("./shoppingRoutes"),
 biddingRoutes = require("./biddingRoutes"),
-shoppingRoutes = require("./shoppingRoutes");
+userRoutes = require("./userRoutes"),
+errorRoutes = require("./errorRoutes");
+
 
 router.use("/bidding", biddingRoutes);
 router.use("/shopping", shoppingRoutes);
+router.use("/user", userRoutes);
+router.use("/", homeRoutes);
+router.use("/", errorRoutes);
 
 module.exports = router;
