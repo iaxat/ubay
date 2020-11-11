@@ -77,7 +77,7 @@ Licence URI: https://www.os-templates.com/template-terms
         </li> -->
         <!-- <li><a href="#">Link Text</a></li>
         <li><a href="#">Link Text</a></li> -->
-        <li><a href="/user/login">Login</a></li>
+        <li><a href="/users/login">Login</a></li>
       </ul>
       <!-- ################################################################################################ -->
     </nav>
@@ -87,6 +87,19 @@ Licence URI: https://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 
+<div class="flashes">
+  <% if (flashMessages) { %>
+  <% if (flashMessages.success) { %>
+  <div class="flash success">
+    <%= flashMessages.success %>
+  </div>
+  <% } else if (flashMessages.error) { %>
+  <div class="flash error">
+    <%= flashMessages.error %>
+  </div>
+  <% } %>
+  <% } %>
+</div>
 
 <%- body %>
 <div class="wrapper row4">

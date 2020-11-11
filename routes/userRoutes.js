@@ -5,11 +5,13 @@ const router = require("express").Router(),
 
 //router.get("/", userController.index);
 router.get("/login", userController.login);
+router.post("/login",userController.authenticate);
 router.get("/new", userController.new);
 router.post("/create",
-//userController.validate,
+userController.validate,
 userController.create,
-//userController.redirectView
+userController.redirectView
 );
+
 
 module.exports = router;

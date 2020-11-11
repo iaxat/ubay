@@ -10,7 +10,7 @@ errorRoutes = require("./errorRoutes");
 
 router.use("/bidding", biddingRoutes);
 router.use("/shopping", shoppingRoutes);
-router.use("/user", userRoutes);
+router.use("/users", userRoutes);
 router.use("/", homeRoutes);
 router.use("/", errorRoutes);
 

@@ -1,8 +1,6 @@
 "use strict";
 
-const {
-    checkout
-} = require("../routes");
+const {check, validationResult} = require("express-validator");
 
 const User = require("../models/user"),
     passport = require("passport"),
@@ -21,7 +19,6 @@ const User = require("../models/user"),
                 city: body.city,
                 zipCode: body.zipCode
             }
-
         }
     };
 
@@ -33,16 +30,18 @@ module.exports = {
         res.render("./users/new");
     },
     create: (req, res, next) => {
-        //if (req.skip) next();
-        console.log("working");
+        if (req.skip) next();
+        // console.log("working");
         let newUser = new User(getUserDetails(req.body));
         User.register(newUser, req.body.password, (error, user) => {
           if (user) {
-            req.flash("success", `${user.fullName}'s account created successfully!`);
-            //res.locals.redirect = "/users/signUp";
-            res.render("users/new");
-            //next();
+            req.flash("success", `${user.fullName}'s account created successfully!  Login now`);
+            res.locals.redirect = "/users/login"; 
+            // console.log("true");
+            // res.render("/users/signUp");
+            next();
           } else {
+            // console.log("false");
             req.flash("error", `Failed to create user account because: ${error.message}.`);
             res.locals.redirect = "/users/new";
             next();
@@ -60,30 +59,29 @@ module.exports = {
         successRedirect: "/",
         successFlash: "Logged in!"
     }),
-    // validate: async (req, res, next) => {
-    //     await check("email").normalizeEmail({
-    //         all_lowercase: true
-    //     }).trim().run(req);
-    //     await check("email", "Email is invalid").isEmail().run(req);
-    //     await check("zipCode", "Zip code is invalid").notEmpty().isInt().isLength({
-    //         min: 5,
-    //         max: 5
-    //     }).equals(req.body.zipCode).run(req);
-    //     await check("password", "Password cannot be empty").notEmpty().run(req);
-    //     await check("phoneNumber", "Phone number cannot be empty").notEmpty().run(req);
-    //     await check("street", "street cannot be empty").notEmpty().run(req);
-    //     await check("city", "City cannot be empty").notEmpty().run(req);
+    validate: async (req, res, next) => {
+        // await check("email").normalizeEmail({
+        //     all_lowercase: true
+        // }).trim().run(req);
+        await check("email", "Email is invalid").isEmail().run(req);
+        await check("zipCode", "Zip code is invalid").notEmpty().isInt().isLength({
+            min: 5,
+            max: 5
+        }).equals(req.body.zipCode).run(req);
+        await check("password", "Password cannot be empty").notEmpty().run(req);
+        await check("phoneNumber", "Phone number cannot be empty").notEmpty().run(req);
+        await check("street", "street cannot be empty").notEmpty().run(req);
+        await check("city", "City cannot be empty").notEmpty().run(req);
 
-    //     const error = validationResult(req);
-    //     if (!error.isEmpty()) {
-    //         let messages = error.array().map(e => e.msg);
-    //         req.skip = true;
-    //         req.flash("error", messages.join(" and "));
-    //         res.locals.redirect = "/users/new";
-    //         next();
-    //     } else {
-    //         next();
-    //     }
-    // },
-
+        const error = validationResult(req);
+        if (!error.isEmpty()) {
+            let messages = error.array().map(e => e.msg);
+            req.skip = true;
+            req.flash("error", messages.join(" and "));
+            res.locals.redirect = "/users/new";
+            next();
+        } else {
+            next();
+        }
+    },
 };

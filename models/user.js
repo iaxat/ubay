@@ -51,7 +51,7 @@ userSchema = new Schema(
 )
 
 userSchema.plugin(passportLocalMongoose, {
-    usernameField: "username"
+    usernameField: "email"
 });
 
 module.exports = mongoose.model("User", userSchema);
