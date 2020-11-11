@@ -55,11 +55,11 @@ Licence URI: https://www.os-templates.com/template-terms
         <li><a class="drop" href="#">Catagories</a>
           <ul>
             <li><a href="pages/gallery.html"></a></li>
-            <li><a href="pages/full-width.html">Full Width</a></li>
-            <li><a href="pages/sidebar-left.html">Sidebar Left</a></li>
-            <li><a href="pages/sidebar-right.html">Sidebar Right</a></li>
-            <li><a href="pages/basic-grid.html">Basic Grid</a></li>
-            <li><a href="pages/font-icons.html">Font Icons</a></li>
+            <li><a href="pages/full-width.html">Shoes</a></li>
+            <li><a href="pages/sidebar-left.html">Electronics</a></li>
+            <li><a href="pages/sidebar-right.html">Clothing</a></li>
+            <li><a href="pages/basic-grid.html">books</a></li>
+            <li><a href="pages/font-icons.html">others</a></li>
           </ul>
         </li>
         <!-- <li><a class="drop" href="#">Dropdown</a>
@@ -77,7 +77,8 @@ Licence URI: https://www.os-templates.com/template-terms
         </li> -->
         <!-- <li><a href="#">Link Text</a></li>
         <li><a href="#">Link Text</a></li> -->
-        <li><a href="/users/login">Login</a></li>
+        
+        <!-- <li><a href="/users/login">Login</a></li> -->
 
         <div class="login-status">
           <% if (loggedIn) { %>
@@ -88,9 +89,18 @@ Licence URI: https://www.os-templates.com/template-terms
           <div class="log-out">
             <a href="/users/logout">Log out</a>
           </div>
+          <div class="cart">
+            <a href="/">cart</a>
+          </div>
+          <div class="orders">
+            <a href="/">My orders</a>
+          </div>
+          <div class="profile">
+            <a href="/">My profile</a>
+          </div>
           <%} else {%>
           <div class="bubble log-in">
-            <a href="/users/login">Log In</a>
+            <li><a href="/users/login">Login</a></li>
           </div>
           <% } %>
         </div>
