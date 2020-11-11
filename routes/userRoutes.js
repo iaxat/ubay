@@ -9,7 +9,7 @@ router.get("/new", userController.new);
 router.post("/create",
 //userController.validate,
 userController.create,
-userController.redirectView
+//userController.redirectView
 );
 
 module.exports = router;

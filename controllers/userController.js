@@ -33,14 +33,15 @@ module.exports = {
         res.render("./users/new");
     },
     create: (req, res, next) => {
-        // if (req.skip) next();
+        //if (req.skip) next();
         console.log("working");
         let newUser = new User(getUserDetails(req.body));
         User.register(newUser, req.body.password, (error, user) => {
           if (user) {
             req.flash("success", `${user.fullName}'s account created successfully!`);
-            res.locals.redirect = "/users/signUp";
-            next();
+            //res.locals.redirect = "/users/signUp";
+            res.render("users/new");
+            //next();
           } else {
             req.flash("error", `Failed to create user account because: ${error.message}.`);
             res.locals.redirect = "/users/new";
@@ -54,7 +55,7 @@ module.exports = {
         else next();
     },
     authenticate: passport.authenticate("local", {
-        failureRedirect: "/user/login",
+        failureRedirect: "/users/login",
         failureFlash: "Failed to login.",
         successRedirect: "/",
         successFlash: "Logged in!"
