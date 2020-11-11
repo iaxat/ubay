@@ -36,7 +36,7 @@ module.exports = {
         User.register(newUser, req.body.password, (error, user) => {
           if (user) {
             req.flash("success", `${user.fullName}'s account created successfully!  Login now`);
-            res.locals.redirect = "/users/login"; 
+            res.locals.redirect = "/users/signup"; 
             // console.log("true");
             // res.render("/users/signUp");
             next();
@@ -47,6 +47,9 @@ module.exports = {
             next();
           }
         });
+      },
+      signup:(req,res)=>{
+        res.render("users/signup");
       },
     redirectView: (req, res, next) => {
         let redirectPath = res.locals.redirect;
@@ -60,9 +63,9 @@ module.exports = {
         successFlash: "Logged in!"
     }),
     validate: async (req, res, next) => {
-        // await check("email").normalizeEmail({
-        //     all_lowercase: true
-        // }).trim().run(req);
+        await check("email").normalizeEmail({
+            all_lowercase: true
+        }).trim().run(req);
         await check("email", "Email is invalid").isEmail().run(req);
         await check("zipCode", "Zip code is invalid").notEmpty().isInt().isLength({
             min: 5,

@@ -78,6 +78,22 @@ Licence URI: https://www.os-templates.com/template-terms
         <!-- <li><a href="#">Link Text</a></li>
         <li><a href="#">Link Text</a></li> -->
         <li><a href="/users/login">Login</a></li>
+
+        <div class="login-status">
+          <% if (loggedIn) { %>
+          <div class="bubble logged-in">
+            Logged in as <a href="<%=`/users/${currentUser._id}`%>">
+              <%= currentUser.fullName %></a>
+          </div>
+          <div class="log-out">
+            <a href="/users/logout">Log out</a>
+          </div>
+          <%} else {%>
+          <div class="bubble log-in">
+            <a href="/users/login">Log In</a>
+          </div>
+          <% } %>
+        </div>
       </ul>
       <!-- ################################################################################################ -->
     </nav>
@@ -172,8 +188,8 @@ Licence URI: https://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
 <!-- JAVASCRIPTS -->
-<script src="public/js/jquery.backtotop.js"></script>
-<script src="public/js/jquery.min.js"></script>
-<script type="text/javascript" src="public/js/jquery.mobilemenu.js"></script>
+<script src="/js/jquery.backtotop.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/jquery.mobilemenu.js"></script>
 </body>
 </html>
