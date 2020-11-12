@@ -82,11 +82,11 @@ Licence URI: https://www.os-templates.com/template-terms
 
           <!-- <li><a href="/users/login">Login</a></li> -->
           <% if (loggedIn) { %>
-            <li><a href="<%=`/users/${currentUser._id}`%>"> Logged in as <%= currentUser.username %></a></li>
+            <li><a href=""> Logged in as <%= currentUser.username %></a></li>
             <li><a href="/users/logout">Log out</a></li>
             <li><a href="/">cart</a></li>
             <li><a href="/">My orders</a></li>
-            <li><a href="/">My profile</a></li>
+            <li><a href="<%=`/users/${currentUser._id}`%>">My profile</a></li>
           <%} else {%>
             <li><a href="/users/login">Login</a></li>
           <% } %>

@@ -13,5 +13,8 @@ userController.validate,
 userController.create,
 userController.redirectView
 ); 
+router.get("/:id", userController.show, userController.showView);
+router.get("/:id/edit", userController.edit);
+router.put("/:id/update", userController.update, userController.redirectView);
 
 module.exports = router;
