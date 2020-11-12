@@ -56,7 +56,6 @@ Licence URI: https://www.os-templates.com/template-terms
           <li class="active"><a href="/">Home</a></li>
           <li><a class="drop" href="#">Catagories</a>
             <ul>
-              <li><a href="pages/gallery.html"></a></li>
               <li><a href="pages/full-width.html">Shoes</a></li>
               <li><a href="pages/sidebar-left.html">Electronics</a></li>
               <li><a href="pages/sidebar-right.html">Clothing</a></li>
@@ -64,46 +63,37 @@ Licence URI: https://www.os-templates.com/template-terms
               <li><a href="/">others</a></li>
             </ul>
           </li>
-          <!-- <li><a class="drop" href="#">Dropdown</a>
-          <ul>
-            <li><a href="#">Level 2</a></li>
-            <li><a class="drop" href="#">Level 2 + Drop</a>
-              <ul>
-                <li><a href="#">Level 3</a></li>
-                <li><a href="#">Level 3</a></li>
-                <li><a href="#">Level 3</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Level 2</a></li>
-          </ul>
-        </li> -->
-          <!-- <li><a href="#">Link Text</a></li>
-        <li><a href="#">Link Text</a></li> -->
 
-          <!-- <li><a href="/users/login">Login</a></li> -->
 
-            
-          <% if (loggedIn && currentUser.email=="admin@gmail.com") { %> -->
-            <li><a href="">logged in as admin <%= currentUser.username %></a></li>
-            <li><a href="/users/logout">Log out</a></li>
-            <li><a href="/">Approve BID</a></li>
-            <li><a href="/">Approve products</a></li>
-            <li><a href="<%=`/users/${currentUser._id}`%>">Admin profile</a></li>
+          <% if (loggedIn && currentUser.email=="admin@gmail.com") { %>
+          <li><a href="">logged in as<%= currentUser.username %></a>
+            <ul>
+              <li><a href="/">Approve products</a></li>
+              <li><a href="/">Approve BID</a></li>
+              <li><a href="<%=`/users/${currentUser._id}`%>">Admin profile</a></li>
+            </ul>
+          </li>
+          <li><a href="/users/logout">Log out</a></li>
           <%} else {      %>
-          
-              <% if (loggedIn && currentUser.email!="admin@gmail.com") {
+
+          <% if (loggedIn && currentUser.email!="admin@gmail.com") {
                 console.log(currentUser.email); %>
-                <li><a href=""> Logged in as <%= currentUser.username %></a></li>
-                <li><a href="/users/logout">Log out</a></li>
-                <li><a href="/">cart</a></li>
-                <li><a href="/">My orders</a></li>
-                <li><a href="<%=`/users/${currentUser._id}`%>">My profile</a></li>
-              <%} else {%>
-                <li><a href="/users/login">Login</a></li>
-              <% } %>
+          <li><a href=""> Logged in as <%= currentUser.username %></a>
+            <ul>
+              <li><a href="<%=`/users/${currentUser._id}`%>">My profile</a></li>
+              <li><a href="/">My orders</a></li>
+            </ul>
+          </li>
+          <li><a href="/">cart</a></li>
+          <li><a href="/users/logout">Log out</a></li>
+          </li>
+
+          <%} else {%>
+          <li><a href="/users/login">Login</a></li>
+          <% } %>
           <% } %>
 
-          
+
         </ul>
         <!-- ################################################################################################ -->
       </nav>
