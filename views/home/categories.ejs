@@ -1,0 +1,93 @@
+<%  console.log(product1[0].forBidding) %>
+
+
+<% product1.forEach(product => { %>
+
+<% if(product.forBidding) { %>
+
+  <h2>Bidding Table</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Base Price</th>
+        <th>current Bidding Price</th>
+        <th>Time left</th>
+        <th>Category</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+     
+      <tr>
+        <td>
+          <a >
+            <%= product.productName %>
+          </a>
+        </td>
+        <td>
+          <%= product.description %>
+        </td>
+        <td>
+          <%= product.price %>
+        </td>
+        <td>
+            <a>not done yet</a>
+        </td>
+        <td>
+          <a>not done yet</a>
+      </td>
+        <td>
+          <%= product.category %>
+        </td>
+        <td>
+          <a href="<%=`/bidding/${product._id}/placeBid`%>">
+            Place BID
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<% } else { %>
+
+  <h2>shopping Table</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Cart</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td>
+          <a>
+            <%= product.productName %>
+          </a>
+        </td>
+        <td>
+          <%= product.description %>
+        </td>
+        <td>
+          <%= product.price %>
+        </td>
+        <td>
+          <%= product.category %>
+        </td>
+
+        <td>
+          <a href="<%=`/bidding/${product._id}/addToCart`%>">
+            Add to Cart
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <% } %>
+
+  <% }); %>

@@ -14,7 +14,7 @@ module.exports = {
     console.log(cat);
     Product.find({status:"approved", category:cat})
       .then(product => {
-        res.locals.product = product;
+        res.locals.product1 = product;
         next();
       })
       .catch(error => {
@@ -23,6 +23,6 @@ module.exports = {
       });
   },
   categoryView: (req, res) => {
-    res.render("/category");
+    res.render("home/categories");
   },
 };

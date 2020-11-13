@@ -5,8 +5,8 @@ const Product = require("../models/product");
 module.exports = {
   index: (req, res, next) => {
     Product.find({ forBidding: "false", status: "approved" })
-      .then(product => {
-        res.locals.product = product;
+      .then(products => {
+        res.locals.products = products;
         next();
       })
       .catch(error => {
