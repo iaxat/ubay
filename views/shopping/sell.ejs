@@ -1,0 +1,30 @@
+<% if (loggedIn) { %>
+
+    <div class="data-form">
+        <form class="form-signin" action="/shopping/create" method="POST" encrypte="multiport/form-data">
+        <h2 class="form-signin-heading">Enter details for your product :</h2>
+        
+        <label for="inputProductName">Product Name</label>
+        <input type="text" name="productName" id="inputProductName" class="form-control" placeholder="Product Name" autofocus>
+        
+        <label for="inputDescription">Description</label>
+        <input type="text" name="description" id="inputDescription" class="form-control" placeholder="description">
+        
+        <label for="inputPrice">price</label>
+        <input type="number" name="price" id="inputPrice" class="form-control" placeholder="Price" required>
+
+        <label for="inputCategory">Category</label>
+        <input type="text" name="category" id="inputCategory" class="form-control" placeholder="Category" required>
+
+        <!-- <label for="inputImage">Image</label>    
+        <input type="file" id="image" name="image" class="form-control" value="" required> -->
+
+        <br />
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        </form>
+    </div>
+    <p><%= currentUser._id%></p>
+<% } else { %>
+    <h> login first !!! </h>
+    <a href="/users/login">click here !!</a>
+<% } %>

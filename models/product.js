@@ -1,10 +1,13 @@
 "use strict";
 
 const mongoose =require("mongoose"),
-{Schema}= mongoose;
-
+{Schema}= mongoose,
 productSchema = new Schema(
     {
+        user_id:{
+            type:String,
+            required:true
+        },
         productName:{
             type: String,
             required: true
@@ -13,10 +16,11 @@ productSchema = new Schema(
             type: String,
             required: true
         },
-        image:{
-            type: Image,
-            required: true
-        },
+        // image:{
+        //     data: Buffer, 
+        // contentType: String ,
+        // required: true
+        // },
         price:{
             type: Number,
             required: true
