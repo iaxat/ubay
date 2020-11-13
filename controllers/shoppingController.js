@@ -4,7 +4,7 @@ const Product = require("../models/product");
 
 module.exports = {
   index: (req, res, next) => {
-    Product.find({forBidding: "false", status:"approved"})
+    Product.find({ forBidding: "false", status: "approved" })
       .then(product => {
         res.locals.product = product;
         next();
@@ -17,20 +17,20 @@ module.exports = {
   indexView: (req, res) => {
     res.render("shopping/index");
   },
-  sell:(req,res)=>{
+  sell: (req, res) => {
     res.render("./shopping/sell");
   },
 
   create: (req, res, next) => {
     console.log("shop");
     let productParams = {
-        user_id: req.user._id,
-         productName : req.body.productName,
-          description: req.body.description,
-          price: req.body.price,
-          category: req.body.category,
-          forBidding: "false",
-          status:"approved",
+      user_id: req.user._id,
+      productName: req.body.productName,
+      description: req.body.description,
+      price: req.body.price,
+      category: req.body.category,
+      forBidding: "false",
+      status: "approved",
     };
     Product.create(productParams)
       .then(product => {
@@ -47,6 +47,6 @@ module.exports = {
     let redirectPath = res.locals.redirect;
     if (redirectPath) res.redirect(redirectPath);
     else next();
-},
+  },
 
 };
