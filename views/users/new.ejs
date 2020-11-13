@@ -1,4 +1,6 @@
-<div class="data-form">
+<div class="wrapper bgded overlay" style="background-image:url('images/demo/backgrounds/01.png');">
+
+  <div class="data-form" id="create-account">
     <form class="form-signin" action="/users/create" method="POST">
       <h2 class="form-signin-heading">Create a new user:</h2>
       <label for="inputFirstName">First Name</label>
@@ -13,9 +15,10 @@
 
       <label for="inputPassword">Password</label>
       <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-      
+
       <label for="inputPhoneNumber">Phone Number</label>
-      <input type="text" name="phoneNumber" id="inputPhoneNumber" class="form-control" placeholder="Phone Number" required>
+      <input type="text" name="phoneNumber" id="inputPhoneNumber" class="form-control" placeholder="Phone Number"
+        required>
       <p>Address</p>
 
       <label for="inputStreet">Street</label>
@@ -30,4 +33,4 @@
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
     </form>
   </div>
-  
+</div>

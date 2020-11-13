@@ -1,30 +1,40 @@
 <% if (loggedIn) { %>
 
-        <div class="data-form">
-            <form class="form-signin" action="/bidding/create" method="POST" encrypte="multiport/form-data">
-            <h2 class="form-signin-heading">Enter details for your product :</h2>
-            
-            <label for="inputProductName">Product Name</label>
-            <input type="text" name="productName" id="inputProductName" class="form-control" placeholder="Product Name" autofocus>
-            
-            <label for="inputDescription">Description</label>
-            <input type="text" name="description" id="inputDescription" class="form-control" placeholder="description">
-            
-            <label for="inputPrice">price</label>
-            <input type="number" name="price" id="inputPrice" class="form-control" placeholder="Price" required>
+<div class="data-form">
+    <form class="form-signin" action="/bidding/create" method="POST" encrypte="multiport/form-data">
+        <h2 class="form-signin-heading">Enter details for your product :</h2>
 
-            <label for="inputCategory">Category</label>
-            <input type="text" name="category" id="inputCategory" class="form-control" placeholder="Category" required>
+        <label for="inputProductName">Product Name</label>
+        <input type="text" name="productName" id="inputProductName" class="form-control" placeholder="Product Name"
+            autofocus>
 
-            <!-- <label for="inputImage">Image</label>    
+        <label for="inputDescription">Description</label>
+        <input type="text" name="description" id="inputDescription" class="form-control" placeholder="description">
+
+        <label for="inputPrice">price</label>
+        <input type="number" name="price" id="inputPrice" class="form-control" placeholder="Price" required>
+
+        <!-- <label for="inputCategory">Category</label>
+        <input type="text" name="category" id="inputCategory" class="form-control" placeholder="Category" required> -->
+
+        <label for="inputCatagory">Catagory</label>
+        <select name="category" id="inputCatagory" class="form-control" placeholder="Category" required>
+            <option value="Shoes">Shoes</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Books">Books</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <!-- <label for="inputImage">Image</label>    
             <input type="file" id="image" name="image" class="form-control" value="" required> -->
 
-            <br />
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-            </form>
-        </div>
-        <p><%= currentUser._id%></p>
+        <br />
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+    </form>
+</div>
+<p><%= currentUser._id%></p>
 <% } else { %>
-        <h> login first !!! </h>
-        <a href="/users/login">click here !!</a>
-    <% } %>
+<h> login first !!! </h>
+<a href="/users/login">click here !!</a>
+<% } %>
