@@ -1,0 +1,30 @@
+Ubay
+
+3_blind_mice
+
+Chetan Birthare
+Lance Hollingsworth
+Kumar Akshat
+
+
+Milestone 2 – 10/14/20:
+ 
+This is the second milestone for Project “Ubay” for MMIS 6050.
+
+•	Progress Since Last Milestone:
+We did decide previously to create an online uploading platform for files, which can be shared to various users using their email address. /n
+We came through this idea coming through the Mozilla’s product Firefox Send. After some discussions and going through the pre-requisites of the project, /n
+we came with the idea to create an online auction website which can help in bidding and creating a marketplace for customers. We had to change the plans for the /n
+project. We came out to create a platform where we will have multiple pages for the product and user panel, which will help us have 15 dynamic pages for the project.  /n
+We have installed express.js module for the project and plan to install mongoose for the database. We also plan to use the online atlas database for the project. /n
+
+
+•	Problems Encountered / Questions:
+The problems that we encountered was on the planning level, we were facing difficulties on how to have multiple pages and how will it interact with the database, /n
+we are still in process to discuss this in details and we feel that we will soon have the solution. We are also confused with the integration on online MongoDB /n
+Atlas with the project, and how can it be accessed by whole team or is there an option that a database can be created for the whole team. /n
+
+
+With this submission, we have removed the node module files to save space for the upload. We have also created a GitHub repository with the project name and /n
+collaborated with other team mates on the repo, such the development and track of code is easy and secure. Invite request has also been sent to /n
+Professor Dr. Kelly Fadel, Kumar Akshat, Lance Hollingsworth, and Chetan Birthare. The link of GitHub repo is private and thus accessed with only access by invitees. /n

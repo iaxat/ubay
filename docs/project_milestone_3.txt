@@ -1,0 +1,20 @@
+Ubay /n
+
+Name: 2_blind_mice /n
+
+Chetan Birthare, 
+Lance Hollingsworth /n
+
+•	Progress Since Last Milestone:
+
+Since the last milestone we have spent a lot of time working on getting the basic routes and functionality of the project. /n
+We found a template that we thought would be a good fit for the project and we used it to help us move forward. /n
+After finding the template we organized the folders following MVC standards and connected the database so we could store user information /n
+along with product information into the database. A user can preform CRUD operations for their account and also submit products that can be sold or auctioned off. /n
+We found a way to display products according to their categories. We also created specific pages for shopping and for bidding. /n
+
+
+•	Problems Encountered / Questions:
+We still haven't figured out a good way to upload and store an image of the products that are going to be listed. /n
+We are not sure if mulder is a good option or if we should continue looking. We still have a lot of design/styling changes that we will /n 
+need to make for the final submission of the project. 
