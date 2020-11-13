@@ -1,42 +1,43 @@
-<h> Wanna put something for auction</h>
-<a href="/shopping/sell">Click here !!</a>
 
-<h2>Product Table</h2>
+  <h> Wanna sell something?</h>
+  <a href="/shopping/sell">Click here !!</a>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Category</th>
-      <th>Cart</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% product.forEach(product => { %>
-    <tr>
-      <td>
-        <a >
-          <%= product.productName %>
-        </a>
-      </td>
-      <td>
-        <%= product.description %>
-      </td>
-      <td>
-        <%= product.price %>
-      </td>
-      <td>
-        <%= product.category %>
-      </td>
-      
-      <td>
-        <a href="<%=`/bidding/${product._id}/addToCart`%>">
-          Add to Cart
-        </a>
-      </td>
-    </tr>
-    <% }); %>
-  </tbody>
-</table>
+  <h2>Product Table</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Cart</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% product.forEach(product => { %>
+      <tr>
+        <td>
+          <a>
+            <%= product.productName %>
+          </a>
+        </td>
+        <td>
+          <%= product.description %>
+        </td>
+        <td>
+          <%= product.price %>
+        </td>
+        <td>
+          <%= product.category %>
+        </td>
+
+        <td>
+          <a href="<%=`/bidding/${product._id}/addToCart`%>">
+            Add to Cart
+          </a>
+        </td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>

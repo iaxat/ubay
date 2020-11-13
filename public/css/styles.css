@@ -12,6 +12,21 @@ File: Layout CSS
 @import url("/css/allMin.css");
 @import url("/css/framework.css");
 
+
+/* Input
+--------------------------------------------------------------------------------------------------------------- */
+input, button{border:1px solid;}
+input{display:block; width:100%; padding:12px 15px;}
+button{padding:10px 15px 12px; font-size:1rem;}
+input, button{border-color:transparent;}
+input{color:#FFFFFF; background-color:rgba(255,255,255,.2);}
+input:focus{background-color:#D24130;}
+button{color:#FFFFFF; background-color:#D24130;}
+button:hover{color:inherit; background-color:transparent; border-color:inherit;}
+
+#create-account { width: 33%; margin-left:33%; padding-top: 45px;}
+
+
 /* Rows
 --------------------------------------------------------------------------------------------------------------- */
 .row0, .row0 a{}

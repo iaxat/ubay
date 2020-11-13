@@ -53,14 +53,14 @@ Licence URI: https://www.os-templates.com/template-terms
       <nav id="mainav" class="fl_right">
         <!-- ################################################################################################ -->
         <ul class="clear">
-          <li class="active"><a href="/">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li><a class="drop" href="#">Catagories</a>
             <ul>
               <li><a href="pages/full-width.html">Shoes</a></li>
               <li><a href="pages/sidebar-left.html">Electronics</a></li>
               <li><a href="pages/sidebar-right.html">Clothing</a></li>
-              <li><a href="">books</a></li>
-              <li><a href="/">others</a></li>
+              <li><a href="">Books</a></li>
+              <li><a href="/">Others</a></li>
             </ul>
           </li>
 
@@ -68,7 +68,7 @@ Licence URI: https://www.os-templates.com/template-terms
           <% if (loggedIn && currentUser.email=="admin@gmail.com") { %>
           <li><a href="">logged in as<%= currentUser.username %></a>
             <ul>
-              <li><a href="/">Approve products</a></li>
+              <li><a href="/">Approve Products</a></li>
               <li><a href="/">Approve BID</a></li>
               <li><a href="<%=`/users/${currentUser._id}`%>">Admin profile</a></li>
             </ul>
@@ -80,8 +80,8 @@ Licence URI: https://www.os-templates.com/template-terms
                 console.log(currentUser.email); %>
           <li><a href=""> Logged in as <%= currentUser.username %></a>
             <ul>
-              <li><a href="<%=`/users/${currentUser._id}`%>">My profile</a></li>
-              <li><a href="/">My orders</a></li>
+              <li><a href="<%=`/users/${currentUser._id}`%>">My Profile</a></li>
+              <li><a href="/">My Orders</a></li>
             </ul>
           </li>
           <li><a href="/">cart</a></li>
@@ -122,7 +122,7 @@ Licence URI: https://www.os-templates.com/template-terms
     <footer id="footer" class="hoc clear">
       <!-- ################################################################################################ -->
       <div class="one_quarter first">
-        <h6 class="heading">Pentwist</h6>
+        <h6 class="heading">uBay</h6>
         <nav>
           <ul class="nospace linklist">
             <li><a href="#">About</a></li>
