@@ -35,7 +35,7 @@ module.exports = {
     Product.create(productParams)
       .then(product => {
         res.locals.redirect = "/shopping";
-        // res.locals.product = product;
+        res.locals.product = product;
         next();
       })
       .catch(error => {

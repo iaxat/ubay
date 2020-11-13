@@ -33,7 +33,7 @@ module.exports = {
     Product.create(productParams)
       .then(product => {
         res.locals.redirect = "/bidding";
-        // res.locals.product = product;
+        res.locals.product = product;
         next();
       })
       .catch(error => {
