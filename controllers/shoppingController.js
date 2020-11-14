@@ -22,7 +22,7 @@ module.exports = {
   },
 
   create: (req, res, next) => {
-    console.log("shop");
+
     let productParams = {
       user_id: req.user._id,
       productName: req.body.productName,

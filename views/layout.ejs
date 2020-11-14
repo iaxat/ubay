@@ -76,8 +76,7 @@ Licence URI: https://www.os-templates.com/template-terms
           <li><a href="/users/logout">Log out</a></li>
           <%} else {      %>
 
-          <% if (loggedIn && currentUser.email!="admin@gmail.com") {
-                console.log(currentUser.email); %>
+          <% if (loggedIn && currentUser.email!="admin@gmail.com") {  %>
           <li><a href=""> Logged in as <%= currentUser.username %></a>
             <ul>
               <li><a href="<%=`/users/${currentUser._id}`%>">My Profile</a></li>

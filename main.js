@@ -15,7 +15,7 @@ mongoose.Promise = global.Promise;
 
 mongoose.connect(
   "mongodb+srv://lanceworth15:cactusjack@module3.m2r86.mongodb.net/project?retryWrites=true&w=majority",
-  { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true}
+  { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }
 );
 
 const db = mongoose.connection;
@@ -27,7 +27,7 @@ db.once("open", () => {
 app.set("port", process.env.PORT || 3000);
 app.set("view engine", "ejs");
 
-app.use(express.static("public"));  
+app.use(express.static("public"));
 app.use(layouts);
 app.use(
   express.urlencoded({

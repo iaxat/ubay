@@ -10,9 +10,9 @@ module.exports = {
     res.render("contact");
   },
   category: (req, res, next) => {
-    let cat=req.params.id;
-    console.log(cat);
-    Product.find({status:"approved", category:cat})
+    let cat = req.params.id;
+
+    Product.find({ status: "approved", category: cat })
       .then(product => {
         res.locals.product1 = product;
         next();
