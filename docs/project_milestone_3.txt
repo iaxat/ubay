@@ -18,3 +18,5 @@ We found a way to display products according to their categories. We also create
 We still haven't figured out a good way to upload and store an image of the products that are going to be listed. /n
 We are not sure if mulder is a good option or if we should continue looking. We still have a lot of design/styling changes that we will /n 
 need to make for the final submission of the project. 
+
+//express file upload
