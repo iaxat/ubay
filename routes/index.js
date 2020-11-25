@@ -5,12 +5,14 @@ const router = require("express").Router(),
     shoppingRoutes = require("./shoppingRoutes"),
     biddingRoutes = require("./biddingRoutes"),
     userRoutes = require("./userRoutes"),
-    errorRoutes = require("./errorRoutes");
+    errorRoutes = require("./errorRoutes"),
+    adminRoutes = require("./adminRoutes");
 
 
 router.use("/bidding", biddingRoutes);
 router.use("/shopping", shoppingRoutes);
 router.use("/users", userRoutes);
+router.use("/admin", adminRoutes);
 router.use("/", homeRoutes);
 router.use("/", errorRoutes);
 

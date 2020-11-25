@@ -45,6 +45,10 @@ userSchema = new Schema(
                 min: [10000, "Zip Code Too Short"],
                 max: 99999
             }
+        },
+        isAdmin: {
+            type: Boolean,
+            default: false
         }
     }
 )

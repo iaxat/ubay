@@ -33,8 +33,13 @@ productSchema = new Schema(
             type: Boolean,
             required: true
         },
-        status:{
-            type: String
+        isApproved:{
+            type: Boolean,
+            default: false
+        },
+        isSold:{
+            type: Boolean,
+            default: false
         }
     }
 )

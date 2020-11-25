@@ -65,7 +65,7 @@ Licence URI: https://www.os-templates.com/template-terms
           </li>
 
 
-          <% if (loggedIn && currentUser.email=="admin@gmail.com") { %>
+          <% if (loggedIn && currentUser.isAdmin) { %>
           <li><a href="">logged in as<%= currentUser.username %></a>
             <ul>
               <li><a href="/">Approve Products</a></li>
@@ -76,7 +76,7 @@ Licence URI: https://www.os-templates.com/template-terms
           <li><a href="/users/logout">Log out</a></li>
           <%} else {      %>
 
-          <% if (loggedIn && currentUser.email!="admin@gmail.com") {  %>
+          <% if (loggedIn && currentUser.isAdmin===false) {  %>
           <li><a href=""> Logged in as <%= currentUser.username %></a>
             <ul>
               <li><a href="<%=`/users/${currentUser._id}`%>">My Profile</a></li>
