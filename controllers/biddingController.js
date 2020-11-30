@@ -4,7 +4,7 @@ const Product = require("../models/product");
 
 module.exports = {
   index: (req, res, next) => {
-    Product.find({forBidding: "true", status:"approved"})
+    Product.find({forBidding: "true", isApproved:"true"})
       .then(products => {
         res.locals.products = products;
         next();
@@ -28,12 +28,12 @@ module.exports = {
           price: req.body.price,
           category: req.body.category,
           forBidding: "true",
-          status:"approved",
+          // status:"approved",
     };
     Product.create(productParams)
       .then(product => {
         res.locals.redirect = "/bidding";
-        res.locals.product = product;
+        res.locals.products = product;
         next();
       })
       .catch(error => {

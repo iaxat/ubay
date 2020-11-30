@@ -37,6 +37,10 @@ productSchema = new Schema(
             type: Boolean,
             default: false
         },
+        isRejected:{
+            type: Boolean,
+            default: false
+        },
         isSold:{
             type: Boolean,
             default: false

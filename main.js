@@ -14,7 +14,8 @@ const express = require("express"),
 mongoose.Promise = global.Promise;
 
 mongoose.connect(
-  "mongodb+srv://lanceworth15:cactusjack@module3.m2r86.mongodb.net/project?retryWrites=true&w=majority",
+  // "mongodb+srv://lanceworth15:cactusjack@module3.m2r86.mongodb.net/project?retryWrites=true&w=majority",
+  "mongodb+srv://root:root@chetanmongodb.h1yok.gcp.mongodb.net/project_demo?retryWrites=true&w=majority",
   { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }
 );
 

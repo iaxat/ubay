@@ -12,7 +12,7 @@ module.exports = {
   category: (req, res, next) => {
     let cat = req.params.id;
 
-    Product.find({ status: "approved", category: cat })
+    Product.find({ isApproved: "true", category: cat })
       .then(product => {
         res.locals.product1 = product;
         next();

@@ -35,8 +35,9 @@ module.exports = {
     let newUser = new User(getUserDetails(req.body));
     User.register(newUser, req.body.password, (error, user) => {
       if (user) {
-        req.flash("success", `${user.fullName}'s account created successfully!  Login now`);
-        res.locals.redirect = "/users/signup";
+        console.log()
+        req.flash("success", `${user.username}'s account created successfully!  Login now`);
+        res.locals.redirect = "/users/login";
         next();
       } else {
         req.flash("error", `Failed to create user account because: ${error.message}.`);

@@ -4,8 +4,8 @@ const product = require("../models/product");
 const Product = require("../models/product");
 
 module.exports = {
-  index: (req, res, next) => {
-    Product.find({forBidding: "true", isApproved: "false"})
+  bidding: (req, res, next) => {
+    Product.find({forBidding: "true",isRejected:"false", isApproved: "false"})
       .then(products => {
         res.locals.product = products;
         next();
@@ -15,26 +15,41 @@ module.exports = {
         next(error);
       });
   },
-  indexView: (req, res) => {
-    res.render("admin/index");
+
+  biddingView: (req, res) => {
+    res.render("admin/bidding");
   },
+
+  shopping: (req, res, next) => {
+    Product.find({forBidding: "false",isRejected:"false", isApproved: "false"})
+      .then(products => {
+        res.locals.product = products;
+        next();
+      })
+      .catch(error => {
+        console.log(`Error fetching products: ${error.message}`);
+        next(error);
+      });
+  },
+
+  shoppingView: (req, res) => {
+    res.render("admin/shopping");
+  },
+
   approve: (req, res, next) =>{
     let productId = req.params.id,
         productParams = {
-        // user_id: req.user._id,
-        // productName : req.product.productName,
-        // description: req.body.description,
-        // price: req.body.price,
-        // category: req.body.category,
-        // forBidding: req.body.forBidding,
         isApproved: true,
     };
-
     Product.findByIdAndUpdate(productId, {
         $set: productParams
       })
       .then(products => {
-        res.locals.redirect = "/admin";
+        if(products.forBidding){
+          res.locals.redirect = "/admin/bidding";
+        } else{
+          res.locals.redirect = "/admin/shopping";
+        }
         res.locals.product = products;
           next();
         })
@@ -42,7 +57,28 @@ module.exports = {
           console.log(`Error updating product by ID: ${error.message}`);
           next(error);
         });
-
+  },
+  disapprove: (req, res, next) =>{
+    let productId = req.params.id,
+        productParams = {
+        isRejected: true,
+    };
+    Product.findByIdAndUpdate(productId, {
+        $set: productParams
+      })
+      .then(products => {
+        if(products.forBidding){
+          res.locals.redirect = "/admin/bidding";
+        } else{
+          res.locals.redirect = "/admin/shopping";
+        }
+        res.locals.product = products;
+          next();
+        })
+        .catch(error => {
+          console.log(`Error updating product by ID: ${error.message}`);
+          next(error);
+        });
   },
  
   redirectView: (req, res, next) => {

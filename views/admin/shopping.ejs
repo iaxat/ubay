@@ -1,0 +1,47 @@
+<h2>Admin  Table</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>productName</th>
+      <th>description</th>
+      <th>price</th>
+      <th>category</th>
+      <th>Approve </th>
+      <th>Disapprove</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% product.forEach(products => {   %>
+      
+    <tr>
+      <td>
+        
+          <%= products.productName %>
+        </a>
+      </td>
+      <td>
+        <%= products.description %>
+      </td>
+      <td>
+        <%= products.price %>
+      </td>
+      <td>
+        <%= products.category %>
+      </td>
+      <td>
+        <%= products.price %>
+      </td>
+      <td>
+        <a href="<%=`/admin/${products._id}/approve`%>">
+          click to approve
+        </a>
+      </td>
+      <td>
+        <a href="<%=`/admin/${products._id}/disapprove`%>">
+          click to disapprove
+        </a>
+      </td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>

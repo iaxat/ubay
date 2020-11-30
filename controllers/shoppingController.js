@@ -30,7 +30,7 @@ module.exports = {
       price: req.body.price,
       category: req.body.category,
       forBidding: "false",
-      status: "approved",
+      // status: "approved",
     };
     Product.create(productParams)
       .then(product => {
