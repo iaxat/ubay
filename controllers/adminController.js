@@ -40,6 +40,7 @@ module.exports = {
     let productId = req.params.id,
         productParams = {
         isApproved: true,
+        // time : Date.now + 1
     };
     Product.findByIdAndUpdate(productId, {
         $set: productParams

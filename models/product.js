@@ -44,7 +44,11 @@ productSchema = new Schema(
         isSold:{
             type: Boolean,
             default: false
-        }
+        },
+        // time : {
+        //     type : Date, 
+        //     default: Date.now
+        // }
     }
 )
 
