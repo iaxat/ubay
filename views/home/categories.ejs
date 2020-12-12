@@ -88,3 +88,18 @@
 <% } %>
 
 <% }); %>
+
+
+
+<h1><span>Product Gallery</span></h1>
+<ul class="gallery">
+  <% product1.forEach(product => { %>
+  <li>
+    <% if(product.forBidding) { %>
+    <a href="#" <%= product._id %>">
+      <img src="images/nikeGolf.jpg" alt="">
+    </a>
+  </li>
+  <%}%>
+  <% }); %>
+</ul>
