@@ -36,28 +36,39 @@ module.exports = {
     res.render("admin/shopping");
   },
 
-  approve: (req, res, next) =>{
+  approve: (req, res, next) => {
+    let a = new Date();
+    a.setDate(a.getDate() + 1);
+    a = a.getTime()
+    // console.log("set data : ", a);
+
+    let b = new Date();
+    b = b.getTime();
+    // console.log("current time : ", b);
+    console.log("dif in hours: ", (a - b) / (1000 * 60 * 60));
+    
     let productId = req.params.id,
-        productParams = {
+      productParams = {
         isApproved: true,
-        // time : Date.now + 1
-    };
+        time: a,
+        remainingTime: (a - b) / (1000 * 60 * 60)
+      };  
     Product.findByIdAndUpdate(productId, {
-        $set: productParams
-      })
+      $set: productParams
+    })
       .then(products => {
-        if(products.forBidding){
+        if (products.forBidding) {
           res.locals.redirect = "/admin/bidding";
-        } else{
+        } else {
           res.locals.redirect = "/admin/shopping";
         }
         res.locals.product = products;
-          next();
-        })
-        .catch(error => {
-          console.log(`Error updating product by ID: ${error.message}`);
-          next(error);
-        });
+        next();
+      })
+      .catch(error => {
+        console.log(`Error updating product by ID: ${error.message}`);
+        next(error);
+      });
   },
   disapprove: (req, res, next) =>{
     let productId = req.params.id,

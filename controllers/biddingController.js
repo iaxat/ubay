@@ -4,8 +4,24 @@ const Product = require("../models/product");
 
 module.exports = {
   index: (req, res, next) => {
-    Product.find({forBidding: "true", isApproved:"true"})
+
+    Product.find({ forBidding: "true", isApproved: "true" })
       .then(products => {
+        products.forEach(prod => {
+          let prod_id=prod._id;
+          let a = new Date();
+          a = a.getTime();
+          let rem_time = (prod.time - a) / (1000 * 60 * 60);
+          console.log(prod.productName, " ---", prod.time, " and ", rem_time);
+          
+          Product.findByIdAndUpdate(prod_id,{
+              $set:
+                { remainingTime: rem_time }
+          }).then(k=>{
+            console.log(k)
+          })
+        }
+        )
         res.locals.products = products;
         next();
       })

@@ -45,10 +45,14 @@ productSchema = new Schema(
             type: Boolean,
             default: false
         },
-        // time : {
-        //     type : Date, 
-        //     default: Date.now
-        // }
+        time : {
+            type : Number, 
+            default: Date.now
+        },
+        remainingTime:{
+            type : Number,
+            
+        },
     }
 )
 

@@ -33,7 +33,12 @@
         <a>not done yet</a>
       </td>
       <td>
-        <a>not done yet</a>
+        <%  let hours=parseInt(product.remainingTime);
+            let min=parseInt((product.remainingTime *60)%60);
+            let sec=parseInt((product.remainingTime *3600)%60);
+            <!-- console.log(hours," : ", min," : ",sec); -->
+        %>
+        <%= hours %> hours and <%= min %> minutes
       </td>
       <td>
         <%= product.category %>
