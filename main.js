@@ -1,6 +1,7 @@
 "use strict";
 
 const express = require("express"),
+  fileUpload = require('express-fileupload'),
   app = express(),
   layouts = require("express-ejs-layouts"),
   router = require("./routes/index"),
@@ -10,12 +11,14 @@ const express = require("express"),
   User = require("./models/user"),
   connectFlash = require("connect-flash"),
   expressSession = require("express-session"),
-  cookieParser = require("cookie-parser");
+  cookieParser = require("cookie-parser"),
+  path = require("path");
+
 mongoose.Promise = global.Promise;
 
 mongoose.connect(
-  "mongodb+srv://lanceworth15:cactusjack@module3.m2r86.mongodb.net/project?retryWrites=true&w=majority",
-  //"mongodb+srv://root:root@chetanmongodb.h1yok.gcp.mongodb.net/project_demo?retryWrites=true&w=majority",
+  // "mongodb+srv://lanceworth15:cactusjack@module3.m2r86.mongodb.net/project?retryWrites=true&w=majority",
+  "mongodb+srv://root:root@chetanmongodb.h1yok.gcp.mongodb.net/project_demo?retryWrites=true&w=majority",
   { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true , useFindAndModify: false}
 );
 
@@ -28,7 +31,9 @@ db.once("open", () => {
 app.set("port", process.env.PORT || 3000);
 app.set("view engine", "ejs");
 
-app.use(express.static("public"));
+app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, "public")));
+
 app.use(layouts);
 app.use(
   express.urlencoded({
@@ -54,6 +59,8 @@ app.use(
     saveUninitialized: false
   })
 );
+
+app.use(fileUpload());
 
 app.use(passport.initialize());
 app.use(passport.session());

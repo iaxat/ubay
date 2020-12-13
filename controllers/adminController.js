@@ -1,6 +1,5 @@
 "use strict";
 
-const product = require("../models/product");
 const Product = require("../models/product");
 
 module.exports = {
@@ -36,7 +35,7 @@ module.exports = {
     res.render("admin/shopping");
   },
 
-  approve: (req, res, next) => {
+  approveBid: (req, res, next) => {
     let a = new Date();
     a.setDate(a.getDate() + 1);
     a = a.getTime()
@@ -51,17 +50,31 @@ module.exports = {
       productParams = {
         isApproved: true,
         time: a,
-        remainingTime: (a - b) / (1000 * 60 * 60)
+        remainingTime: (a - b) / (1000 * 60 * 60),
       };  
     Product.findByIdAndUpdate(productId, {
       $set: productParams
     })
       .then(products => {
-        if (products.forBidding) {
-          res.locals.redirect = "/admin/bidding";
-        } else {
-          res.locals.redirect = "/admin/shopping";
-        }
+        res.locals.redirect = "/admin/bidding";
+        res.locals.product = products;
+        next();
+      })
+      .catch(error => {
+        console.log(`Error updating product by ID: ${error.message}`);
+        next(error);
+      });
+  },
+  approveShop : (req, res, next) => {
+    let productId = req.params.id,
+      productParams = {
+        isApproved: true,
+      };  
+    Product.findByIdAndUpdate(productId, {
+      $set: productParams
+    })
+      .then(products => {
+        res.locals.redirect = "/admin/shopping";
         res.locals.product = products;
         next();
       })

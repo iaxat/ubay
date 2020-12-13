@@ -1,7 +1,13 @@
 <% if (loggedIn) { %>
 
 <div class="data-form">
-    <form class="form-signin" action="/bidding/create" method="POST" encrypte="multiport/form-data">
+    <form 
+        class="form-signin"
+        ref='uploadForm' 
+        id='uploadForm' 
+        action="/bidding/create"
+        method='post' 
+        encType="multipart/form-data">
         <h2 class="form-signin-heading">Enter details for your product :</h2>
 
         <label for="inputProductName">Product Name</label>
@@ -14,8 +20,8 @@
         <label for="inputPrice">price</label>
         <input type="number" name="price" id="inputPrice" class="form-control" placeholder="Price" required>
 
-        <!-- <label for="inputCategory">Category</label>
-        <input type="text" name="category" id="inputCategory" class="form-control" placeholder="Category" required> -->
+        <label for="inputImage">image</label>
+        <input type="file" name="sampleFile" id="inputImage" class="form-control" placeholder="Image" required>
 
         <label for="inputCatagory">Catagory</label>
         <select name="category" id="inputCatagory" class="form-control" placeholder="Category" required>
@@ -25,9 +31,6 @@
             <option value="Books">Books</option>
             <option value="Other">Other</option>
         </select>
-
-        <!-- <label for="inputImage">Image</label>    
-            <input type="file" id="image" name="image" class="form-control" value="" required> -->
 
         <br />
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>

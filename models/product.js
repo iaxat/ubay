@@ -16,14 +16,17 @@ productSchema = new Schema(
             type: String,
             required: true
         },
-        // image:{
-        //     data: Buffer, 
-        // contentType: String ,
-        // required: true
-        // },
+        imageUrl: {
+            type: String,
+            match: /^.*\.(jpg|JPG|png|PNG|jfif)$/,
+            required: true
+        },
         price:{
             type: Number,
             required: true
+        },
+        currentPrice:{
+            type: Number,
         },
         category:{
             type: String,
@@ -50,8 +53,7 @@ productSchema = new Schema(
             default: Date.now
         },
         remainingTime:{
-            type : Number,
-            
+            type : Number,       
         },
     }
 )
