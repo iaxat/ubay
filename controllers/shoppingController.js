@@ -69,18 +69,17 @@ module.exports = {
   },
   showCart: (req,res,next) =>{
     try {
-      Product.find({ forBidding: "false", isApproved: "true", inCart:true, user_id})
+      Product.find({ forBidding: "false", isApproved: "true", inCart:true})
       .then(products => {
         res.locals.products = products;
         next();
-      })
-      .catch(error => {
-        console.log(`Error fetching products: ${error.message}`);
-        next(error);
-      });
+      })      
     } catch (error) {
       console.log(error);
     }
+  },
+  cartView: (req, res) => {
+    res.render("shopping/cart");
   },
   redirectView: (req, res, next) => {
     let redirectPath = res.locals.redirect;

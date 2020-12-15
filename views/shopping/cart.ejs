@@ -17,13 +17,11 @@
   <tbody>
     <% products.forEach(product => { %>
     <tr>
-      <td>
+      <td> 
             <img src="images/<%= product.imageUrl %>" width="20" height="20">
       </td>
       <td>
-        <a>
           <%= product.productName %>
-        </a>
       </td>
       <td>
         <%= product.description %>
