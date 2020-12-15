@@ -1,13 +1,7 @@
 <% if (loggedIn) { %>
 
 <div class="data-form">
-    <form 
-        class="form-signin"
-        ref='uploadForm' 
-        id='uploadForm' 
-        action="/bidding/create"
-        method='post' 
-        encType="multipart/form-data">
+    <form class="form-signin" ref='uploadForm' id='uploadForm' action="/bidding/create" method='post' encType="multipart/form-data">
         <h2 class="form-signin-heading">Enter details for your product :</h2>
 
         <label for="inputProductName">Product Name</label>

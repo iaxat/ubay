@@ -4,9 +4,8 @@ const mongoose =require("mongoose"),
 {Schema}= mongoose,
 productSchema = new Schema(
     {
-        user_id:{
-            type:String,
-            required:true
+        user_id_bid:{
+            type:String
         },
         productName:{
             type: String,
@@ -48,6 +47,9 @@ productSchema = new Schema(
             type: Boolean,
             default: false
         },
+        inCart:{
+            type: Boolean
+        },
         time : {
             type : Number, 
             default: Date.now
@@ -55,6 +57,7 @@ productSchema = new Schema(
         remainingTime:{
             type : Number,       
         },
+        
     }
 )
 
