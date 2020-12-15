@@ -14,7 +14,6 @@ module.exports = {
           a = a.getTime();
           let rem_time = (prod.time - a) / (1000 * 60 * 60);
           // console.log(prod.productName, " ---", prod.time, " and ", rem_time);
-
           Product.findByIdAndUpdate(prod_id, {
             $set:
               { remainingTime: rem_time }

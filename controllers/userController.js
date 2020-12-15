@@ -3,6 +3,7 @@
 const { check, validationResult } = require("express-validator");
 
 const User = require("../models/user"),
+  Product = require("../models/product"),
   passport = require("passport"),
   getUserDetails = body => {
     return {
@@ -102,6 +103,19 @@ module.exports = {
   },
   signup: (req, res) => {
     res.render("users/signup");
+  },
+  myOrder: (req,res,next) =>{
+    Product.find({ isApproved: "true"})
+      .then(products => {
+        res.locals.products = products;
+        res.render("users/myOrders");
+        next();
+      })
+      .catch(error => {
+        console.log(`Error fetching products: ${error.message}`);
+        next(error);
+      });
+
   },
   redirectView: (req, res, next) => {
     let redirectPath = res.locals.redirect;
