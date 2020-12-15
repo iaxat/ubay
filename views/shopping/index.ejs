@@ -18,7 +18,7 @@
     <% products.forEach(product => { %>
     <tr>
       <td>
-            <img src="images/<%= product.imageUrl %>" width="20" height="20">
+        <img class="gallery" class="pic-tile" src="images/<%= product.imageUrl %>">
       </td>
       <td>
         <a>
@@ -44,3 +44,17 @@
     <% }); %>
   </tbody>
 </table>
+
+<ul class="gallery">
+  <% products.forEach(product => { %>
+  <li>
+    <p>test</p>
+    <img src="./images/nikeGolf.jpg" alt="">
+  </li>
+  <div class="pic-tile">
+    <li>
+      <p>test</p>
+      <img src="./images/nikeGolf.jpg" alt="">
+    </li>
+  </div>
+  <% })%>
