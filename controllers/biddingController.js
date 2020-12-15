@@ -80,6 +80,12 @@ module.exports = {
         next(error);
       });
   },
+  // placeBid : (req,res,next) =>{
+  //   let prodId=req.params.id;
+  //   Product.findByIdAndUpdate(prodId,{$set: {currentPrice: }
+
+  //   })
+  // },
   placeBid : (req,res,next) =>{
     if(req.user){
     let prodId=req.params.id;

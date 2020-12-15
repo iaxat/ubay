@@ -1,36 +1,42 @@
 <% if (loggedIn) { %>
+<div class="wrapper bgded overlay" style="background-image:url('images/demo/backgrounds/01.png');">
+    <div class="data-form" id="create-account">
+        <div class="data-form">
+            <form class="form-signin" id='uploadForm' action="/bidding/create" method='post'
+                encType="multipart/form-data">
+                <h2 class="form-signin-heading">Enter details for your product :</h2>
 
-<div class="data-form">
-    <form class="form-signin" ref='uploadForm' id='uploadForm' action="/bidding/create" method='post' encType="multipart/form-data">
-        <h2 class="form-signin-heading">Enter details for your product :</h2>
+                <label for="inputProductName">Product Name</label>
+                <input type="text" name="productName" id="inputProductName" class="form-control"
+                    placeholder="Product Name" autofocus>
 
-        <label for="inputProductName">Product Name</label>
-        <input type="text" name="productName" id="inputProductName" class="form-control" placeholder="Product Name"
-            autofocus>
+                <label for="inputDescription">Description</label>
+                <input type="text" name="description" id="inputDescription" class="form-control"
+                    placeholder="description">
 
-        <label for="inputDescription">Description</label>
-        <input type="text" name="description" id="inputDescription" class="form-control" placeholder="description">
+                <label for="inputPrice">price</label>
+                <input type="number" name="price" id="inputPrice" class="form-control" placeholder="Price" required>
 
-        <label for="inputPrice">price</label>
-        <input type="number" name="price" id="inputPrice" class="form-control" placeholder="Price" required>
+                <label for="inputImage">image</label>
+                <input type="file" name="sampleFile" id="inputImage" class="form-control" required>
 
-        <label for="inputImage">image</label>
-        <input type="file" name="sampleFile" id="inputImage" class="form-control" placeholder="Image" required>
+                <label for="inputCatagory">Catagory</label>
+                <select name="category" id="inputCatagory" class="form-control" required>
+                    <option value="Shoes">Shoes</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Books">Books</option>
+                    <option value="Other">Other</option>
+                </select>
 
-        <label for="inputCatagory">Catagory</label>
-        <select name="category" id="inputCatagory" class="form-control" placeholder="Category" required>
-            <option value="Shoes">Shoes</option>
-            <option value="Electronics">Electronics</option>
-            <option value="Clothing">Clothing</option>
-            <option value="Books">Books</option>
-            <option value="Other">Other</option>
-        </select>
+                <br />
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+            </form>
+        </div>
+        <% } else { %>
+        <h> login first !!! </h>
+        <a href="/users/login">click here !!</a>
+        <% } %>
 
-        <br />
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-    </form>
+    </div>
 </div>
-<% } else { %>
-<h> login first !!! </h>
-<a href="/users/login">click here !!</a>
-<% } %>
