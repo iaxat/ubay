@@ -12,12 +12,11 @@
       <input class="form-control" type="password" name="password" id="inputPassword" value="<%= user.password %>" placeholder="Password" required> -->
       <!-- <label for="inputEmail">Email address</label>
       <input class="form-control" type="email" name="email" id="inputEmail" value="<%= user.email %>" placeholder="Email address" required> -->
-      <label for="inputCity">City</label>
+      <label for="inputStreet">Street</label>
+      <input class="form-control" type="text" name="street" id="inputStreet" value="<%= user.address.street %>" placeholder="Street" required>
+        <label for="inputCity">City</label>
       <input class="form-control" type="text" name="city" id="inputCity" value="<%= user.address.city %>"
         placeholder="City" required>
-      <label for="inputStreet">Street</label>
-      <input class="form-control" type="text" name="street" id="inputStreet" value="<%= user.address.street %>"
-        placeholder="Street" required>
       <label for="inputZipCode">Zip Code</label>
       <input class="form-control" type="text" name="zipCode" id="inputZipCode" pattern="\d*"
         value="<%= user.address.zipCode %>" placeholder="Zip Code" required>
