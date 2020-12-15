@@ -88,17 +88,16 @@ module.exports = {
     res.render("bidding/login-message");
   }
   },
-  buy: (req,res,next) =>{
+  buy:async (req,res,next) =>{
     let prod_id=req.params.id;
     if(req.user){
     try {
-      User.findByIdAndUpdate(req.user._id,{$addToSet:{orders:[prod_id]}}).then(
-        User.findByIdAndUpdate(req.user._id,{$pull:{orders:[prod_id]}}).then(l=>{
-            console.log(l);
+    const l1=await  User.findByIdAndUpdate(req.user._id,{$addToSet:{orders:[prod_id]}});
+    const l2=await User.findByIdAndUpdate(req.user._id,{$pull:{inCartOrders: prod_id}});
+            // console.log(l);
             res.locals.redirect="/shopping/orders";
             next();
-        })
-      )
+      
     } catch (error) {
       next(error);
     }

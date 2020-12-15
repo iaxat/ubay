@@ -50,7 +50,7 @@ module.exports = {
       productParams = {
         isApproved: true,
         time: a,
-        remainingTime: (a - b) / (1000 * 60 * 60),
+        remainingTime: (a - b) / (1000 * 60 * 60)
       };  
     Product.findByIdAndUpdate(productId, {
       $set: productParams
