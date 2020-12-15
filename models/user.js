@@ -50,7 +50,8 @@ userSchema = new Schema(
             type: Boolean,
             default: false
         },
-        // orders:
+        inCartOrders:[{ type: Schema.Types.ObjectId, ref: "Product" }],
+        orders: [{ type: Schema.Types.ObjectId, ref: "Product" }],
     }
 )
 

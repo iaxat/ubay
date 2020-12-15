@@ -1,6 +1,7 @@
 "use strict";
 
 const Product = require("../models/product");
+const User = require("../models/user");
 
 module.exports = {
   index: (req, res, next) => {
@@ -58,17 +59,25 @@ module.exports = {
   addToCart: (req,res,next) =>{
     let prod_id=req.params.id;
     try {
-      Product.findByIdAndUpdate(prod_id,{$set : {inCart: true}}
-        ).then(k=>{
-          res.locals.redirect="/shopping/cart";
-          next();
+      User.findByIdAndUpdate(req.user._id,{$addToSet:{inCartOrders:[prod_id]}}).then(l=>{
+        console.log(l);
+      
+        Product.findByIdAndUpdate(prod_id,{$set : {inCart: true}}
+          ).then(k=>{
+            res.locals.redirect="/shopping/cart";
+            next();
+          })
         })
     } catch (error) {
       next(error);
     }
   },
-  showCart: (req,res,next) =>{
+  showCart: async (req,res,next) =>{
     try {
+      let prod_cart_id= await User.findById(req.user._id,"inCartOrders").populate("inCartOrders");    
+      console.log("dfghj :  ",prod_cart_id)
+      res.render("shopping/cart",{products: prod_cart_id.inCartOrders});
+      
       Product.find({ forBidding: "false", isApproved: "true", inCart:true})
       .then(products => {
         res.locals.products = products;
@@ -78,9 +87,16 @@ module.exports = {
       console.log(error);
     }
   },
-  cartView: (req, res) => {
-    res.render("shopping/cart");
+  buy: (req,res,next)=>{
+    try {
+      User.findByIdAndUpdate(req.user._id,{$addToSet:{orders:[prod_id]}}, {$pull:{inCartOrders:[prod_id]}})
+    } catch (error) {
+      console.log(error);
+    }
   },
+  // cartView: (req, res) => {
+  //   res.render("shopping/cart");
+  // },
   redirectView: (req, res, next) => {
     let redirectPath = res.locals.redirect;
     if (redirectPath) res.redirect(redirectPath);
