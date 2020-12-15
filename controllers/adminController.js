@@ -39,11 +39,8 @@ module.exports = {
     let a = new Date();
     a.setDate(a.getDate() + 1);
     a = a.getTime()
-    // console.log("set data : ", a);
-
     let b = new Date();
     b = b.getTime();
-    // console.log("current time : ", b);
     console.log("dif in hours: ", (a - b) / (1000 * 60 * 60));
     
     let productId = req.params.id,
@@ -57,7 +54,6 @@ module.exports = {
     })
       .then(products => {
         res.locals.redirect = "/admin/bidding";
-        // res.locals.product = products;
         next();
       })
       .catch(error => {

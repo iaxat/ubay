@@ -23,10 +23,7 @@ module.exports = {
   },
 
   create: (req, res, next) => {
-
-    console.log("in shopping")
     let sampleFile1 = req.files.sampleFile;
-    console.log(sampleFile1);
 
     if (!req.files || Object.keys(req.files).length === 0) {
       return res.status(400).send('No files were uploaded.');
@@ -61,8 +58,6 @@ module.exports = {
     if(req.user){
     try {
       User.findByIdAndUpdate(req.user._id,{$addToSet:{inCartOrders:[prod_id]}}).then(l=>{
-        console.log(l);
-
             res.locals.redirect="/shopping/cart";
             next();
         })
@@ -78,7 +73,6 @@ module.exports = {
     if(req.user){
     try {
       let prod_cart_id= await User.findById(req.user._id,"inCartOrders").populate("inCartOrders");    
-      console.log("hhhhh :  ",prod_cart_id);
       res.render("shopping/cart",{products: prod_cart_id.inCartOrders});
     } catch (error) {
       console.log(error);
@@ -94,10 +88,8 @@ module.exports = {
     try {
     const l1=await  User.findByIdAndUpdate(req.user._id,{$addToSet:{orders:[prod_id]}});
     const l2=await User.findByIdAndUpdate(req.user._id,{$pull:{inCartOrders: prod_id}});
-            // console.log(l);
             res.locals.redirect="/shopping/orders";
             next();
-      
     } catch (error) {
       next(error);
     }
@@ -111,7 +103,6 @@ module.exports = {
     if(req.user){
     try {
       let prod_order_id= await User.findById(req.user._id,"orders").populate("orders");    
-      console.log("dfghj :  ",prod_order_id);
       res.render("users/myOrders",{products: prod_order_id.orders});
     } catch (error) {
       console.log(error);
