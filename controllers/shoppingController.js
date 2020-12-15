@@ -58,45 +58,69 @@ module.exports = {
   },
   addToCart: (req,res,next) =>{
     let prod_id=req.params.id;
+    if(req.user){
     try {
       User.findByIdAndUpdate(req.user._id,{$addToSet:{inCartOrders:[prod_id]}}).then(l=>{
         console.log(l);
-      
-        Product.findByIdAndUpdate(prod_id,{$set : {inCart: true}}
-          ).then(k=>{
+
             res.locals.redirect="/shopping/cart";
             next();
-          })
         })
     } catch (error) {
       next(error);
     }
+  }else{
+    res.locals.redirect = "/bidding/login-message";
+    res.render("bidding/login-message");
+  }
   },
   showCart: async (req,res,next) =>{
+    if(req.user){
     try {
       let prod_cart_id= await User.findById(req.user._id,"inCartOrders").populate("inCartOrders");    
-      console.log("dfghj :  ",prod_cart_id)
+      console.log("hhhhh :  ",prod_cart_id);
       res.render("shopping/cart",{products: prod_cart_id.inCartOrders});
-      
-      Product.find({ forBidding: "false", isApproved: "true", inCart:true})
-      .then(products => {
-        res.locals.products = products;
-        next();
-      })      
     } catch (error) {
       console.log(error);
     }
+  }else{
+    res.locals.redirect = "/bidding/login-message";
+    res.render("bidding/login-message");
+  }
   },
-  buy: (req,res,next)=>{
+  buy: (req,res,next) =>{
+    let prod_id=req.params.id;
+    if(req.user){
     try {
-      User.findByIdAndUpdate(req.user._id,{$addToSet:{orders:[prod_id]}}, {$pull:{inCartOrders:[prod_id]}})
+      User.findByIdAndUpdate(req.user._id,{$addToSet:{orders:[prod_id]}}).then(
+        User.findByIdAndUpdate(req.user._id,{$pull:{orders:[prod_id]}}).then(l=>{
+            console.log(l);
+            res.locals.redirect="/shopping/orders";
+            next();
+        })
+      )
+    } catch (error) {
+      next(error);
+    }
+  }else{
+    res.locals.redirect = "/bidding/login-message";
+    res.render("bidding/login-message");
+  }
+  },
+  showOrders: async (req,res,next)=>{
+    let prod_id=req.params.id;
+    if(req.user){
+    try {
+      let prod_order_id= await User.findById(req.user._id,"orders").populate("orders");    
+      console.log("dfghj :  ",prod_order_id);
+      res.render("users/myOrders",{products: prod_order_id.orders});
     } catch (error) {
       console.log(error);
+    }}else{
+      res.locals.redirect = "/bidding/login-message";
+      res.render("bidding/login-message");
     }
   },
-  // cartView: (req, res) => {
-  //   res.render("shopping/cart");
-  // },
   redirectView: (req, res, next) => {
     let redirectPath = res.locals.redirect;
     if (redirectPath) res.redirect(redirectPath);

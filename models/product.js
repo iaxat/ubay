@@ -47,9 +47,6 @@ productSchema = new Schema(
             type: Boolean,
             default: false
         },
-        inCart:{
-            type: Boolean
-        },
         time : {
             type : Number, 
             default: Date.now
