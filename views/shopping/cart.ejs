@@ -11,19 +11,17 @@
       <th>Description</th>
       <th>Price</th>
       <th>Category</th>
-      <th>Cart</th>
+      <th>Buy</th>
     </tr>
   </thead>
   <tbody>
     <% products.forEach(product => { %>
     <tr>
-      <td>
+      <td> 
             <img src="images/<%= product.imageUrl %>" width="20" height="20">
       </td>
       <td>
-        <a>
           <%= product.productName %>
-        </a>
       </td>
       <td>
         <%= product.description %>
@@ -36,8 +34,8 @@
       </td>
 
       <td>
-        <a href="<%=`/shopping/${product._id}/addToCart`%>">
-          Add to Cart
+        <a href="<%=`/shopping/${product._id}/buy`%>">
+          Buy
         </a>
       </td>
     </tr>

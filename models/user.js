@@ -49,7 +49,9 @@ userSchema = new Schema(
         isAdmin: {
             type: Boolean,
             default: false
-        }
+        },
+        inCartOrders:[{ type: Schema.Types.ObjectId, ref: "Product" }],
+        orders: [{ type: Schema.Types.ObjectId, ref: "Product" }],
     }
 )
 

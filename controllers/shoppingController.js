@@ -1,10 +1,11 @@
 "use strict";
 
 const Product = require("../models/product");
+const User = require("../models/user");
 
 module.exports = {
   index: (req, res, next) => {
-    Product.find({ forBidding: "false", status: "approved" })
+    Product.find({ forBidding: "false", isApproved: "true"})
       .then(products => {
         res.locals.products = products;
         next();
@@ -23,13 +24,25 @@ module.exports = {
 
   create: (req, res, next) => {
 
+    console.log("in shopping")
+    let sampleFile1 = req.files.sampleFile;
+    console.log(sampleFile1);
+
+    if (!req.files || Object.keys(req.files).length === 0) {
+      return res.status(400).send('No files were uploaded.');
+    }
+    sampleFile1.mv('public/images/' + sampleFile1.name, function (err) {
+      if (err)
+        return res.status(500).send(err);
+    });
+
     let productParams = {
-      user_id: req.user._id,
       productName: req.body.productName,
       description: req.body.description,
       price: req.body.price,
       category: req.body.category,
       forBidding: "false",
+      imageUrl: sampleFile1.name,
       // status: "approved",
     };
     Product.create(productParams)
@@ -43,6 +56,47 @@ module.exports = {
         next(error);
       });
   },
+  addToCart: (req,res,next) =>{
+    let prod_id=req.params.id;
+    try {
+      User.findByIdAndUpdate(req.user._id,{$addToSet:{inCartOrders:[prod_id]}}).then(l=>{
+        console.log(l);
+      
+        Product.findByIdAndUpdate(prod_id,{$set : {inCart: true}}
+          ).then(k=>{
+            res.locals.redirect="/shopping/cart";
+            next();
+          })
+        })
+    } catch (error) {
+      next(error);
+    }
+  },
+  showCart: async (req,res,next) =>{
+    try {
+      let prod_cart_id= await User.findById(req.user._id,"inCartOrders").populate("inCartOrders");    
+      console.log("dfghj :  ",prod_cart_id)
+      res.render("shopping/cart",{products: prod_cart_id.inCartOrders});
+      
+      Product.find({ forBidding: "false", isApproved: "true", inCart:true})
+      .then(products => {
+        res.locals.products = products;
+        next();
+      })      
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  buy: (req,res,next)=>{
+    try {
+      User.findByIdAndUpdate(req.user._id,{$addToSet:{orders:[prod_id]}}, {$pull:{inCartOrders:[prod_id]}})
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  // cartView: (req, res) => {
+  //   res.render("shopping/cart");
+  // },
   redirectView: (req, res, next) => {
     let redirectPath = res.locals.redirect;
     if (redirectPath) res.redirect(redirectPath);

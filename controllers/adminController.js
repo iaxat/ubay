@@ -8,7 +8,7 @@ module.exports = {
       .then(products => {
         res.locals.product = products;
         next();
-      })
+      })  
       .catch(error => {
         console.log(`Error fetching products: ${error.message}`);
         next(error);
@@ -57,7 +57,7 @@ module.exports = {
     })
       .then(products => {
         res.locals.redirect = "/admin/bidding";
-        res.locals.product = products;
+        // res.locals.product = products;
         next();
       })
       .catch(error => {
