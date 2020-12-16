@@ -104,12 +104,7 @@ module.exports = {
     let prod_currentPrice=req.params.id2;
     let newPrice = (prod_currentPrice * 1.10).toFixed(2);
     try {
-<<<<<<< HEAD
-      if(prodId.remainingTime>0){
-      Product.findByIdAndUpdate(prodId,{$set: {currentPrice: prod_currentPrice*1.10 , user_id_bid : req.user._id, username_bid:req.user.username}
-=======
       Product.findByIdAndUpdate(prodId,{$set: {currentPrice: newPrice , user_id_bid : req.user._id, username_bid:req.user.username}
->>>>>>> 9cf4c48368a0d0209e9ec915084ee81eda4f44f5
     }).then(k => {
       res.locals.redirect = "/bidding";
       next();
