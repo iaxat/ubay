@@ -15,7 +15,8 @@
     <% products.forEach(product => { %>
     <tr>
       <td>
-        <img class="gallery" class="pic-tile" src="images/<%= product.imageUrl %>">
+        <img class="gallery" class="pic-tile" src="/images/<%= product.imageUrl %>">
+        <%console.log("in cart :",product.imageUrl)%>
       </td>
       <td>
         <%= product.productName %>

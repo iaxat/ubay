@@ -73,7 +73,7 @@ module.exports = {
     if(req.user){
     try {
       let prod_cart_id= await User.findById(req.user._id,"inCartOrders").populate("inCartOrders");    
-      //console.log("dfghj :  ",prod_cart_id)
+      console.log("dfghj :  ",prod_cart_id)
       res.render("shopping/cart",{products: prod_cart_id.inCartOrders});
     } catch (error) {
       console.log(error);
