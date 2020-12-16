@@ -3,6 +3,9 @@
 const Product = require("../models/product");
 const User = require("../models/user");
 
+
+
+// Helped in dealing with JSON data resulted from external api
 var prettyjson = require('prettyjson');
 
 const httpStatus = require("http-status-codes"),
