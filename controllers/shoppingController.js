@@ -4,6 +4,7 @@ const Product = require("../models/product");
 const User = require("../models/user");
 
 module.exports = {
+  //finds all products approve for shopping
   index: (req, res, next) => {
     Product.find({ forBidding: "false", isApproved: "true"})
       .then(products => {
@@ -21,7 +22,7 @@ module.exports = {
   sell: (req, res) => {
     res.render("./shopping/sell");
   },
-
+  //inserts the product data into the database
   create: (req, res, next) => {
     let sampleFile1 = req.files.sampleFile;
 
@@ -53,6 +54,7 @@ module.exports = {
         next(error);
       });
   },
+  //adds a product into a users cart
   addToCart: (req,res,next) =>{
     let prod_id=req.params.id;
     if(req.user){
@@ -69,6 +71,7 @@ module.exports = {
     res.render("bidding/login-message");
   }
   },
+  //shows all the products that are in a users cart
   showCart: async (req,res,next) =>{
     if(req.user){
     try {
@@ -83,6 +86,7 @@ module.exports = {
     res.render("bidding/login-message");
   }
   },
+  //lets the user add the products to their completed orders
   buy:async (req,res,next) =>{
     let prod_id=req.params.id;
     if(req.user){
@@ -99,6 +103,7 @@ module.exports = {
     res.render("bidding/login-message");
   }
   },
+  //shows all the bidding and shopping orders that the user has completed 
   showOrders: async (req,res,next)=>{
     let prod_id=req.params.id;
     if(req.user){
@@ -117,5 +122,4 @@ module.exports = {
     if (redirectPath) res.redirect(redirectPath);
     else next();
   },
-
 };

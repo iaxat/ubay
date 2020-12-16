@@ -1,6 +1,19 @@
-1. Application URL: Provide a URL to the live (deployed) version of your application.  
+1. Application URL: TO DO 
 
-Application Summary:  Write a 1-4 paragraph summary description of your application.  This can be similar to the project description you submitted in milestone 1, but you may need to be a bit more detailed.  You should include the purpose of the application, a description of its intended users, and a brief summary of its features.  Write the description to give an overview of the application’s functionality to someone who is completely unfamiliar with your application.
+Application Summary:  Write a 1-4 paragraph summary description of your application.  
+This can be similar to the project description you submitted in milestone 1,
+but you may need to be a bit more detailed.  You should include the purpose of the application,
+ a description of its intended users, and a brief summary of its features.
+Write the description to give an overview of the application’s functionality to someone 
+who is completely unfamiliar with your application.
+
+Over the semester we spent our time building an e-commerce website. We liked the idea of having multiple
+ways to sell a product. For that reason, we created an auction page for users to list their products
+to auction and a shopping page for users to sell their products like normal. Because anyone is allowed
+to create an account and list products we were required to have an Administrator of the website that
+could go online and verify and approve the products. We did this with hopes to eliminate spam and false 
+sales. When a user goes online to place a bid, the current price increases by 10% with each bid. 
+ 
 
 Routing Guide:  Provide a list of all routes supported by your application and a brief summary of what each route provides.  For example:
 GET /users:  Renders the users/users view with a list of all application users from the database.
@@ -9,13 +22,86 @@ GET /weather:  Calls the weatherstack API with submitted location information an
 GET /api/courses:  Returns a list of available courses in JSON format.  Requires an access token.
 POST /contact:  Submits form data from the contact view to the database.
 
-User Credentials and Roles: List any user roles supported by your application.  For each role, list the routes to which the role has exclusive access.  Also, include a sample user account for each role that I can use to access your system.  Example:
-Application Roles
-Administrators
-Exclusive Route Access: admin/users, admin/courses, admin/inventory...
-Sample User Account:  username: admin, password: admin123
-Employees
-Exclusive Route Access:  ...
-Sample User Account:  ...
+GET / - homeController.index 
+Renders the home page
+GET /category/:id -homeController.category, homeController.categoryView
+Renders the different category views
 
-Project Requirements:  Create a two-column table with the project requirements from the initial project description page listed in the left column.  In the right column, list/ describe the components of your project that meet each requirement.  For example, your table might look like the following:
+GET /bidding, biddingController.updateProduct,biddingController.validate,biddingController.index, biddingController.indexView);
+Updates the reminaing time, checks if the bid has expired, and then takes appropriate action, and then renders a view that shows all active auctions
+GET /bidding/sell, biddingController.sell)
+Renders a view for a user to list a product for auction
+
+router.post("/create", biddingController.create, biddingController.redirectView);
+sends product information to the database and then renders appropriate view
+router.get("/:id/:id2/placeBid", biddingController.placeBid, biddingController.redirectView);
+id1: product ID, id2: current_price- changes the current bidding price and registers the user as the highest bidder 
+
+router.get("/", shoppingController.index, shoppingController.indexView);
+Shows all the products that are listed for shopping
+router.get("/sell", shoppingController.sell);
+renders a view for a product to be listed for sale
+router.post("/create", shoppingController.create, shoppingController.redirectView);
+Sends product information to the database and then renders appropriate view
+router.get("/:id/addToCart",shoppingController.addToCart,shoppingController.redirectView);
+Adds product to the users cart and then renders appropriate view
+router.get("/:id/buy",shoppingController.buy,shoppingController.redirectView);
+Adds product to users completed orders and then removes it from the users cart
+router.get("/orders",shoppingController.showOrders);
+Shows a view of all the users orders for auctions and shopping
+router.get("/cart",shoppingController.showCart);
+renders a view of a users cart
+
+
+router.get("/login", userController.login);
+Renders a view for a user to login to account
+router.get("/signup", userController.signup);
+Renders a view for a visitor to create an account
+router.post("/login", userController.authenticate);
+verifies user information and logs them into their account
+router.get("/new", userController.new);
+renders the view for a user account to be created
+router.post("/create",
+  userController.validate,
+  userController.create,
+  userController.redirectView
+);
+verifies that user information is correct, sends the information to the database, and renders appropriate view
+router.get("/logout", userController.logout, userController.redirectView);
+Logs a user out of their account
+router.get("/:id", userController.show, userController.showView);
+Shows a user their acccount information
+router.get("/:id/edit", userController.edit);
+renders a view for a user to edit their account information
+router.put("/:id/update", userController.update, userController.redirectView);
+sends updated user information to the database and renders appropriate view
+
+router.get("/bidding", adminController.bidding, adminController.biddingView);
+Shows all the auction products that have been submitted and are awaiting admin approval
+router.get("/shopping", adminController.shopping, adminController.shoppingView);
+Shows all the shopping products that have been submitted and are awaiting admin approval
+router.get("/:id/approveBid", adminController.approveBid,adminController.redirectView);
+approves an individual auction item for auction and then renders appropriate view
+router.get("/:id/approveShop", adminController.approveShop,adminController.redirectView);
+approves an individual shopping item and then renders appropriate view
+router.get("/:id/disapprove",adminController.disapprove,adminController.redirectView);
+Denies both bidding and shopping products if the admin doesnt approve
+
+
+User Credentials and Roles: List any user roles supported by your application.  For each role, list the routes to which the role has exclusive access. 
+Also, include a sample user account for each role that I can use to access your system.  Example:
+
+Application Roles
+1. Admin
+    -Exclusive Route Access: admin/shopping, admin/bidding, admin/:id/edit
+    -Sample User Account:  username: frosty@snowman.com, password: frosty
+2. Customers
+    -Exclusive Route Access:  users/myOrders, shopping/cart, shopping/orders, shopping/sell, 
+    shopping/:id/addToCart, shopping/:id/buy, bidding/sell, bidding/:id/:id2/placeBid, users/profile,
+    users/:id/edit
+    -Sample User Account: username: santa@clause.com password: santa
+
+Project Requirements:  Create a two-column table with the project requirements from the
+initial project description page listed in the left column.  In the right column,
+list/ describe the components of your project that meet each requirement.  For example,
+your table might look like the following:
