@@ -1,4 +1,4 @@
-<h2>Bidding Table</h2>
+<h2>Auctions</h2>
 <table class="table">
   <thead>
     <tr>
@@ -9,6 +9,7 @@
       <th>current Bidding Price</th>
       <th>Time left</th>
       <th>Category</th>
+      <th>Place Bid</th>
 
     </tr>
   </thead>
@@ -31,10 +32,14 @@
         <%= product.price %>
       </td>
       <td>
-        <a>not done yet</a>
+        <%= product.currentPrice %>
       </td>
       <td>
-        <a>not done yet</a>
+        <%  let hours=parseInt(product.remainingTime);
+            let min=parseInt((product.remainingTime *60)%60);
+            let sec=parseInt((product.remainingTime *3600)%60);
+        %>
+        <%= hours %> hours and <%= min %> minutes
       </td>
       <td>
         <%= product.category %>
@@ -50,7 +55,7 @@
   </tbody>
 </table>
 
-<h2>shopping Table</h2>
+<h2>Shop</h2>
 <table class="table">
   <thead>
     <tr>
@@ -92,18 +97,3 @@
     <% }) %>
   </tbody>
 </table>
-
-
-
-<!-- <h1><span>Product Gallery</span></h1>
-<ul class="gallery">
-  <% product1.forEach(product => { %>
-  <li>
-    <% if(product.forBidding) { %>
-    <a href="#" <%= product._id %>">
-      <img src="images/nikeGolf.jpg" alt="">
-    </a>
-  </li>
-  <%}%>
-  <% }); %>
-</ul> -->

@@ -71,8 +71,17 @@ Application Roles
     -Sample User Account: username: santa@clause.com password: santa
 
 Project Requirements:  
-|-------------------------------------------|-------------------------------------------|
-|                                           |                                           |
+|---------------------------------------------|-------------------------------------------|
+| 1. 5 interlinked dynamic pages (views)
+| that display dynamic, database-driven
+| content per team member.  To be counted
+| as dynamic, the page must retrieve
+| information to and/or write information to
+| the application database using one or more
+| queries/data access functions written by the
+| team. 
+|
+|2. At least 5 database transactions (a transaction includes selecting, inserting, updating, or deleting data from the database) per team member                                   |                                           |
 |                                           |                                           |
 |                                           |                                           |
 |                                           |                                           |
