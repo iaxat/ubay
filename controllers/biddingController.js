@@ -13,8 +13,7 @@ module.exports = {
           let prod_id = prod._id;
           let a = new Date();
           a = a.getTime();
-          // let rem_time = (prod.time - a) / (1000 * 60 * 60);
-          let rem_time = 0;
+          let rem_time = (prod.time - a) / (1000 * 60 * 60);
           Product.findByIdAndUpdate(prod_id, {
             $set:
               { remainingTime: rem_time }
@@ -85,6 +84,7 @@ module.exports = {
       category: req.body.category,
       forBidding: "true",
       imageUrl: sampleFile1.name,
+      // status:"approved",
     };
     Product.create(productParams)
       .then(product => {
@@ -109,13 +109,11 @@ module.exports = {
       res.locals.redirect = "/bidding";
       next();
     })
-  }else{
-    res.render("bidding/bid-expire");
-  }
     } catch (error) {
       next(error);
     }
   }else{
+    res.locals.redirect = "/bidding/login-message";
     res.render("bidding/login-message");
   }
   },
