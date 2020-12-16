@@ -98,26 +98,27 @@ module.exports = {
       });
   },
   //update the current price of the bid after a bid is placed
-  placeBid : (req,res,next) =>{
-    if(req.user){
-    let prodId=req.params.id;
-    let prod_currentPrice=req.params.id2;
-    let newPrice = (prod_currentPrice * 1.10).toFixed(2);
-    try {
-      if(prodId.remainingTime>0){
-      Product.findByIdAndUpdate(prodId,{$set: {currentPrice: newPrice , user_id_bid : req.user._id, username_bid:req.user.username}
-    }).then(k => {
-      res.locals.redirect = "/bidding";
-      next();
-    })
-    } catch (error) {
-      next(error);
-    }
-  }else{
-    res.locals.redirect = "/bidding/login-message";
-    res.render("bidding/login-message");
-  }
-  },
+  placeBid: (req, res, next) => {
+    if (req.user) {
+      let prodId = req.params.id;
+      let prod_currentPrice = req.params.id2;
+      let newPrice = (prod_currentPrice * 1.10).toFixed(2);
+      
+        if (prodId.remainingTime > 0) {
+          Product.findByIdAndUpdate(prodId, {
+            $set: { currentPrice: newPrice, user_id_bid: req.user._id, username_bid: req.user.username }
+          }).then(k => {
+            res.locals.redirect = "/bidding";
+            next();
+          })
+        }else{
+          res.render("bidding/bid-expire");
+        } }
+        else {
+          res.locals.redirect = "/bidding/login-message";
+          res.render("bidding/login-message");
+        }
+    },
   redirectView: (req, res, next) => {
     let redirectPath = res.locals.redirect;
     if (redirectPath) res.redirect(redirectPath);
