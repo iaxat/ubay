@@ -16,9 +16,11 @@ const express = require("express"),
 
 mongoose.Promise = global.Promise;
 
+
+//Database connection
 mongoose.connect(
-  // "mongodb+srv://lanceworth15:cactusjack@module3.m2r86.mongodb.net/project_4?retryWrites=true&w=majority",
-  "mongodb+srv://root:root@chetanmongodb.h1yok.gcp.mongodb.net/project_demo?retryWrites=true&w=majority",
+  "mongodb+srv://lanceworth15:cactusjack@module3.m2r86.mongodb.net/project_4?retryWrites=true&w=majority",
+  //"mongodb+srv://root:root@chetanmongodb.h1yok.gcp.mongodb.net/project_demo?retryWrites=true&w=majority",
   { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true , useFindAndModify: false}
 );
 
@@ -28,6 +30,7 @@ db.once("open", () => {
   console.log("Successfully connected to MongoDB using Mongoose!");
 });
 
+//app setting
 app.set("port", process.env.PORT || 3000);
 app.set("view engine", "ejs");
 
@@ -76,9 +79,10 @@ app.use((req, res, next) => {
   next();
 });
 
+//Handles all routes for application
 app.use("/", router);
 
-
+//start server
 app.listen(app.get("port"), () => {
   console.log(`Server running at http://localhost:${app.get("port")}`);
 });

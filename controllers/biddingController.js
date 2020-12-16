@@ -4,6 +4,7 @@ const Product = require("../models/product");
 const User = require("../models/user");
 
 module.exports = {
+  //updates the remaining time for the bidding to expire
   updateProduct: (req, res, next) => {
     Product.find({ forBidding: "true", isApproved: "true" })
       .then(products => {
@@ -27,6 +28,7 @@ module.exports = {
         next(error);
       });
   },
+  //checks if remaining time has expired and then updates product status and item is added to winners orders
   validate: async (req, res, next) => {
     try{
     const products=await Product.find({ forBidding: "true", isApproved: "true" });
@@ -48,6 +50,7 @@ module.exports = {
         next(error);
       };
   },
+  //finds the bid that is eligible for bidding
   index: async (req,res,next) =>{
     try {
       const products_2=await Product.find({ forBidding: "true", isApproved: "true" ,isSold:false, isExpired: false});
@@ -63,6 +66,7 @@ module.exports = {
   sell: (req, res) => {
     res.render("./bidding/sell");
   },
+  //inserting the product into the database
   create: (req, res, next) => {
     let sampleFile1 = req.files.sampleFile;
     if (!req.files || Object.keys(req.files).length === 0) {
@@ -93,13 +97,19 @@ module.exports = {
         next(error);
       });
   },
+  //update the current price of the bid after a bid is placed
   placeBid : (req,res,next) =>{
     if(req.user){
     let prodId=req.params.id;
     let prod_currentPrice=req.params.id2;
+    let newPrice = (prod_currentPrice * 1.10).toFixed(2);
     try {
+<<<<<<< HEAD
       if(prodId.remainingTime>0){
       Product.findByIdAndUpdate(prodId,{$set: {currentPrice: prod_currentPrice*1.10 , user_id_bid : req.user._id, username_bid:req.user.username}
+=======
+      Product.findByIdAndUpdate(prodId,{$set: {currentPrice: newPrice , user_id_bid : req.user._id, username_bid:req.user.username}
+>>>>>>> 9cf4c48368a0d0209e9ec915084ee81eda4f44f5
     }).then(k => {
       res.locals.redirect = "/bidding";
       next();

@@ -1,3 +1,5 @@
+//handles all errrors
+
 "use strict";
 
 const httpStatus = require("http-status-codes");

@@ -30,6 +30,7 @@ module.exports = {
   new: (req, res) => {
     res.render("./users/new");
   },
+  //inserts the user data into the database
   create: (req, res, next) => {
     if (req.skip) next();
 
@@ -46,6 +47,7 @@ module.exports = {
       }
     });
   },
+  //shows the user profile
   show: (req, res, next) => {
     let userId = req.params.id;
     User.findById(userId)
@@ -61,6 +63,7 @@ module.exports = {
   showView: (req, res) => {
     res.render("users/show");
   },
+  //lets the user edit the information on their profile
   edit: (req, res, next) => {
     let userId = req.params.id;
     User.findById(userId)
@@ -74,6 +77,7 @@ module.exports = {
         next(error);
       });
   },
+  //updates the user information that is stored in the database
   update: (req, res, next) => {
     let userId = req.params.id,
       userParams = {
@@ -103,30 +107,19 @@ module.exports = {
   signup: (req, res) => {
     res.render("users/signup");
   },
-  myOrder: (req,res,next) =>{
-    Product.find({ isApproved: "true"})
-      .then(products => {
-        res.locals.products = products;
-        res.render("users/myOrders");
-        next();
-      })
-      .catch(error => {
-        console.log(`Error fetching products: ${error.message}`);
-        next(error);
-      });
-
-  },
   redirectView: (req, res, next) => {
     let redirectPath = res.locals.redirect;
     if (redirectPath) res.redirect(redirectPath);
     else next();
   },
+  //verify login
   authenticate: passport.authenticate("local", {
     failureRedirect: "/users/login",
     failureFlash: "Failed to login.",
     successRedirect: "/",
     successFlash: "Logged in!"
   }),
+  //verify that the user sign up information is correct
   validate: async (req, res, next) => {
     await check("email").normalizeEmail({
       all_lowercase: true

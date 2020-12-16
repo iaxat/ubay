@@ -9,6 +9,7 @@ module.exports = {
   contact: (req, res) => {
     res.render("contact");
   },
+  //selects the desired category
   category: (req, res, next) => {
     let cat = req.params.id;
 
