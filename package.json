@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/iaxat/ubay#readme",
   "dependencies": {
+    "axios": "^0.21.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.5",
     "ejs": "^3.1.5",
@@ -31,6 +32,7 @@
     "express-session": "^1.17.1",
     "express-validator": "^6.6.1",
     "http-status-codes": "^2.1.4",
+    "jsonwebtoken": "^8.5.1",
     "method-override": "^3.0.0",
     "mongoose": "^5.10.13",
     "multer": "^1.4.2",
