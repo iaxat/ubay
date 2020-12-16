@@ -14,6 +14,8 @@ const express = require("express"),
   cookieParser = require("cookie-parser"),
   path = require("path");
 
+require("dotenv").config();
+
 mongoose.Promise = global.Promise;
 
 

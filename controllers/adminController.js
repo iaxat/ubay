@@ -2,6 +2,8 @@
 
 const Product = require("../models/product");
 
+const moment = require('moment');
+
 module.exports = {
   //Finds products that are up for auction and not approved so that admin can approve the auctions
   bidding: (req, res, next) => {
@@ -43,12 +45,16 @@ module.exports = {
     let b = new Date();
     b = b.getTime();
     console.log("dif in hours: ", (a - b) / (1000 * 60 * 60));
+
+    let now = moment();
+    console.log(now.format());
     
     let productId = req.params.id,
       productParams = {
         isApproved: true,
         time: a,
-        remainingTime: (a - b) / (1000 * 60 * 60)
+        remainingTime: (a - b) / (1000 * 60 * 60),
+        dateApproved: now.format()
       };  
     Product.findByIdAndUpdate(productId, {
       $set: productParams

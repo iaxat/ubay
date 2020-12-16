@@ -3,6 +3,8 @@
 const Product = require("../models/product");
 const User = require("../models/user");
 
+var prettyjson = require('prettyjson');
+
 const httpStatus = require("http-status-codes"),
     jsonWebToken = require("jsonwebtoken"),
     axios = require("axios");
@@ -66,6 +68,13 @@ module.exports = {
     externalApi: (req, res) => {
     
         axios('https://jsonplaceholder.typicode.com/todos').then(function (resp) {
+
+            let options = {
+                noColor: false
+              };
+               
+              console.log(prettyjson.render(resp.data, options));
+
             res.render("external-api", { data: resp.data });
         });
     }
