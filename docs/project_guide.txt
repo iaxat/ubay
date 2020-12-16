@@ -50,6 +50,12 @@ GET /admin/:id/approveBid: approves an individual auction item for auction and t
 GET /admin/:id/approveShop: approves an individual shopping item and then renders appropriate view
 GET /admin/:id/disapprove: Denies both bidding and shopping products if the admin doesnt approve
 
+router.get("/products",apiController.verifyToken, apiController.getProduct,apiController.respondJSON);
+it first verifiesthe token in the URL and if correct fetches the product details and responds in JSON format
+router.get("/token", apiController.getToken);
+retuens a secured json web token
+router.get("/external", apiController.externalApi);
+fetches the external Api using axios which renders a view of fake json data
 
 User Credentials and Roles: List any user roles supported by your application.  For each role, list the routes to which the role has exclusive access. 
 Also, include a sample user account for each role that I can use to access your system.  Example:
