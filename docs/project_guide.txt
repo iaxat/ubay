@@ -70,7 +70,40 @@ Application Roles
     users/:id/edit
     -Sample User Account: username: santa@clause.com password: santa
 
-Project Requirements:  Create a two-column table with the project requirements from the
-initial project description page listed in the left column.  In the right column,
-list/ describe the components of your project that meet each requirement.  For example,
-your table might look like the following:
+Project Requirements:  
+|-------------------------------------------|-------------------------------------------|
+|                                           |                                           |
+|                                           |                                           |
+|                                           |                                           |
+|                                           |                                           |
+|                                           |                                           |
+|                                           |                                           |
+|-------------------------------------------|-------------------------------------------|
+|                                           |                                           |
+|                                           |                                           |
+|                                           |                                           |
+|                                           |                                           |
+|                                           |                                           |
+|                                           |                                           |
+|-------------------------------------------|-------------------------------------------|
+|                                           |                                           |
+|                                           |                                           |
+|                                           |                                           |
+|                                           |                                           |
+|                                           |                                           |
+|                                           |                                           |
+|-------------------------------------------|-------------------------------------------|
+|                                           |                                           |
+|                                           |                                           |
+|                                           |                                           |
+|                                           |                                           |
+|                                           |                                           |
+|                                           |                                           |
+|-------------------------------------------|-------------------------------------------|
+|                                           |                                           |
+|                                           |                                           |
+|                                           |                                           |
+|                                           |                                           |
+|                                           |                                           |
+|                                           |                                           |
+|-------------------------------------------|-------------------------------------------|
