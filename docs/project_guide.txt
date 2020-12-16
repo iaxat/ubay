@@ -1,0 +1,21 @@
+1. Application URL: Provide a URL to the live (deployed) version of your application.  
+
+Application Summary:  Write a 1-4 paragraph summary description of your application.  This can be similar to the project description you submitted in milestone 1, but you may need to be a bit more detailed.  You should include the purpose of the application, a description of its intended users, and a brief summary of its features.  Write the description to give an overview of the application’s functionality to someone who is completely unfamiliar with your application.
+
+Routing Guide:  Provide a list of all routes supported by your application and a brief summary of what each route provides.  For example:
+GET /users:  Renders the users/users view with a list of all application users from the database.
+GET /users/:id:  Renders the users/userdetails view with details of a specific user.
+GET /weather:  Calls the weatherstack API with submitted location information and returns weather forecast data.  This data is then rendered in the weather view.
+GET /api/courses:  Returns a list of available courses in JSON format.  Requires an access token.
+POST /contact:  Submits form data from the contact view to the database.
+
+User Credentials and Roles: List any user roles supported by your application.  For each role, list the routes to which the role has exclusive access.  Also, include a sample user account for each role that I can use to access your system.  Example:
+Application Roles
+Administrators
+Exclusive Route Access: admin/users, admin/courses, admin/inventory...
+Sample User Account:  username: admin, password: admin123
+Employees
+Exclusive Route Access:  ...
+Sample User Account:  ...
+
+Project Requirements:  Create a two-column table with the project requirements from the initial project description page listed in the left column.  In the right column, list/ describe the components of your project that meet each requirement.  For example, your table might look like the following:
