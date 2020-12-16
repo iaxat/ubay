@@ -1,7 +1,4 @@
-<h> Wanna sell something?</h>
-<a class="btn btn-lg btn-primary btn-block" href="/shopping/sell">Click here !!</a>
-
-<h2>orders</h2>
+<h2>My Orders</h2>
 
 <table class="table">
   <thead>
@@ -17,7 +14,7 @@
     <% products.forEach(product => { %>
     <tr>
       <td>
-            <img src="images/<%= product.imageUrl %>" width="20" height="20">
+            <img class="gallery" class="pic-tile" src="/images/<%= product.imageUrl %>" width="20" height="20">
       </td>
       <td>
         <a>

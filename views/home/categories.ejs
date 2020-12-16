@@ -1,11 +1,8 @@
-<% product1.forEach(product => { %>
-
-<% if(product.forBidding) { %>
-
 <h2>Bidding Table</h2>
 <table class="table">
   <thead>
     <tr>
+      <th>Picture</th>
       <th>Name</th>
       <th>Description</th>
       <th>Base Price</th>
@@ -16,8 +13,12 @@
     </tr>
   </thead>
   <tbody>
+    <% product1.forEach(product => { %>
+
+    <% if(product.forBidding) { %>
 
     <tr>
+      <td><img class="gallery" class="pic-tile" src="/images/<%= product.imageUrl %>"></td>
       <td>
         <a>
           <%= product.productName %>
@@ -39,19 +40,21 @@
         <%= product.category %>
       </td>
       <td>
-        <a href="<%=`/bidding/${product._id}/placeBid`%>">
+        <a href="<%=`/bidding/${product._id}/${product.currentPrice}/placeBid`%>">
           Place BID
         </a>
       </td>
     </tr>
+    <% } %>
+    <% }) %>
   </tbody>
 </table>
-<% } else { %>
 
 <h2>shopping Table</h2>
 <table class="table">
   <thead>
     <tr>
+      <th>Picture</th>
       <th>Name</th>
       <th>Description</th>
       <th>Price</th>
@@ -60,8 +63,10 @@
     </tr>
   </thead>
   <tbody>
-
+    <% product1.forEach(product => { %>
+    <% if(!product.forBidding) { %>
     <tr>
+      <td><img class="gallery" class="pic-tile" src="/images/<%= product.imageUrl %>"></td>
       <td>
         <a>
           <%= product.productName %>
@@ -78,20 +83,19 @@
       </td>
 
       <td>
-        <a href="<%=`/bidding/${product._id}/addToCart`%>">
+        <a href="<%=`/shopping/${product._id}/addToCart`%>">
           Add to Cart
         </a>
       </td>
     </tr>
+    <% } %>
+    <% }) %>
   </tbody>
 </table>
-<% } %>
-
-<% }); %>
 
 
 
-<h1><span>Product Gallery</span></h1>
+<!-- <h1><span>Product Gallery</span></h1>
 <ul class="gallery">
   <% product1.forEach(product => { %>
   <li>
@@ -102,4 +106,4 @@
   </li>
   <%}%>
   <% }); %>
-</ul>
+</ul> -->
