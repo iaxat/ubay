@@ -12,6 +12,7 @@
       <th>Base Price</th>
       <th>current Bidding Price</th>
       <th>Time left</th>
+      <th>Last Bidder</th>
       <th>Category</th>
     </tr>
   </thead>
@@ -39,10 +40,18 @@
         <%  let hours=parseInt(product.remainingTime);
             let min=parseInt((product.remainingTime *60)%60);
             let sec=parseInt((product.remainingTime *3600)%60);
-            <!-- console.log(hours," : ", min," : ",sec); -->
         %>
         <%= hours %> hours and <%= min %> minutes
       </td>
+      <% if(product.username_bid){ %>
+      <td>
+        <%= product.username_bid %>
+      </td>
+      <% }else{ %>
+        <td>
+          No bid yet
+        </td>
+      <% } %>
       <td>
         <%= product.category %>
       </td>

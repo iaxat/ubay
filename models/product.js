@@ -5,6 +5,10 @@ const mongoose =require("mongoose"),
 productSchema = new Schema(
     {
         user_id_bid:{
+            type:String,
+            default:null
+        },
+        username_bid:{
             type:String
         },
         productName:{
@@ -44,6 +48,10 @@ productSchema = new Schema(
             default: false
         },
         isSold:{
+            type: Boolean,
+            default: false
+        },
+        isExpired:{
             type: Boolean,
             default: false
         },
