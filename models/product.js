@@ -62,6 +62,9 @@ productSchema = new Schema(
         remainingTime:{
             type : Number,       
         },
+        dateApproved:{
+            type:String
+        }
         
     }
 )
