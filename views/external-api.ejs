@@ -1,0 +1,29 @@
+<h1><span>fake Data</span></h1>
+
+<h3>This <a href="https://jsonplaceholder.typicode.com/">API</a> returns fake mock data in JSON format/ You send in the required<h3>
+
+<table class="table">
+    <thread>
+        <tr>
+            <th>User Id</th>
+            <th>Id</th>
+            <th>Title</th>
+        </tr>
+    </thread>
+    <tbody>
+
+        <% data.forEach((d) => { %>
+        <tr>
+            <td>
+                <%= d.userId %>
+            </td>
+            <td>
+                <%= d.id %>
+            </td>
+            <td>
+                <%= d.title %>
+            </td>
+        </tr>
+        <% }); %>
+    </tbody>
+</table>
