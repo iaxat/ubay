@@ -19,8 +19,7 @@ mongoose.Promise = global.Promise;
 
 //Database connection
 mongoose.connect(
-  "mongodb+srv://lanceworth15:cactusjack@module3.m2r86.mongodb.net/project_4?retryWrites=true&w=majority",
-  //"mongodb+srv://root:root@chetanmongodb.h1yok.gcp.mongodb.net/project_demo?retryWrites=true&w=majority",
+  process.env.MONGO_URI
   { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true , useFindAndModify: false}
 );
 
