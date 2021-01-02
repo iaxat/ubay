@@ -33,7 +33,6 @@ module.exports = {
   //inserts the user data into the database
   create: (req, res, next) => {
     if (req.skip) next();
-
     let newUser = new User(getUserDetails(req.body));
     User.register(newUser, req.body.password, (error, user) => {
       if (user) {
