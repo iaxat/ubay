@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/iaxat/ubay#readme",
   "dependencies": {
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.5",
     "debug": "^4.3.1",
