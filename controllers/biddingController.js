@@ -13,7 +13,7 @@ module.exports = {
           let prod_id = prod._id;
           let a = new Date();
           a = a.getTime();
-          let rem_time = (prod.time - a) / (1000 * 60 * 60);
+          let rem_time = (prod.expireTime - a) / (1000 * 60 * 60);
           Product.findByIdAndUpdate(prod_id, {
             $set:
               { remainingTime: rem_time }
@@ -29,32 +29,32 @@ module.exports = {
   },
   //checks if remaining time has expired and then updates product status and item is added to winners orders
   validate: async (req, res, next) => {
-    try{
-    const products=await Product.find({ forBidding: "true", isApproved: "true" });
-    
-        products.forEach(async element => {
-          let prod_id=element._id;
-          if(element.remainingTime<=0){
-            if(element.user_id_bid){
-              const jjj=await Product.findByIdAndUpdate(prod_id,{$set:{isSold:true}});
-              const lll=await User.findByIdAndUpdate(element.user_id_bid,{$addToSet:{orders:[prod_id]}});
-            }else{
-              const jjj=await Product.findByIdAndUpdate(prod_id,{$set:{isExpired:true}});          
-            }
-          };
+    try {
+      const products = await Product.find({ forBidding: "true", isApproved: "true" });
+
+      products.forEach(async element => {
+        let prod_id = element._id;
+        if (element.remainingTime <= 0) {
+          if (element.user_id_bid) {
+            await Product.findByIdAndUpdate(prod_id, { $set: { isSold: true } });
+            await User.findByIdAndUpdate(element.user_id_bid, { $addToSet: { orders: [prod_id] } });
+          } else {
+            await Product.findByIdAndUpdate(prod_id, { $set: { isExpired: true } });
+          }
+        };
       });
-        next();
-    }catch(error) {
-        console.log(`Error fetching products: ${error.message}`);
-        next(error);
-      };
+      next();
+    } catch (error) {
+      console.log(`Error fetching products: ${error.message}`);
+      next(error);
+    };
   },
   //finds the bid that is eligible for bidding
-  index: async (req,res,next) =>{
+  index: async (req, res, next) => {
     try {
-      const products_2=await Product.find({ forBidding: "true", isApproved: "true" ,isSold:false, isExpired: false});
+      const products_2 = await Product.find({ forBidding: "true", isApproved: "true", isSold: false, isExpired: false });
       res.locals.products = products_2;
-        next(); 
+      next();
     } catch (error) {
       console.log(error);
     }
@@ -84,8 +84,8 @@ module.exports = {
       category: req.body.category,
       forBidding: "true",
       imageUrl: sampleFile1.name,
-      // status:"approved",
     };
+    console.log(" rem : ", productParams)
     Product.create(productParams)
       .then(product => {
         res.locals.redirect = "/bidding";
@@ -103,22 +103,30 @@ module.exports = {
       let prodId = req.params.id;
       let prod_currentPrice = req.params.id2;
       let newPrice = (prod_currentPrice * 1.10).toFixed(2);
-      
-        if (prodId.remainingTime > 0) {
+
+      Product.findById(prodId).then(product => {
+        console.log(product, " pro")
+        if (product.remainingTime > 0) {
           Product.findByIdAndUpdate(prodId, {
             $set: { currentPrice: newPrice, user_id_bid: req.user._id, username_bid: req.user.username }
           }).then(k => {
             res.locals.redirect = "/bidding";
             next();
           })
-        }else{
+        } else {
           res.render("bidding/bid-expire");
-        } }
-        else {
-          res.locals.redirect = "/bidding/login-message";
-          res.render("bidding/login-message");
         }
-    },
+      }
+
+      ).catch(err => {
+        console.log(err)
+      })
+    }
+    else {
+      res.locals.redirect = "/bidding/login-message";
+      res.render("bidding/login-message");
+    }
+  },
   redirectView: (req, res, next) => {
     let redirectPath = res.locals.redirect;
     if (redirectPath) res.redirect(redirectPath);

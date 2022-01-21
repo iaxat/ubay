@@ -18,50 +18,48 @@
     </tr>
   </thead>
   <tbody>
-    <% products.forEach(product => { %>
-    <tr>
-      <td>
-          <img class="gallery" class="pic-tile" src="images/<%= product.imageUrl %>">
-      </td>
-      <td>
-        <a>
-          <%= product.productName %>
-        </a>
-      </td>
-      <td>
-        <%= product.description %>
-      </td>
-      <td>
-        <%= product.price %>
-      </td>
-      <td>
-        <%= product.currentPrice %>
-      </td>
-      <td>
-        <%  let hours=parseInt(product.remainingTime);
-            let min=parseInt((product.remainingTime *60)%60);
-            let sec=parseInt((product.remainingTime *3600)%60);
-        %>
-        <%= hours %> hours and <%= min %> minutes
-      </td>
-      <% if(product.username_bid){ %>
-      <td>
-        <%= product.username_bid %>
-      </td>
-      <% }else{ %>
+    <% products.forEach(product=> { %>
+      <tr>
         <td>
-          No bid yet
+          <img class="gallery" class="pic-tile" src="images/<%= product.imageUrl %>">
         </td>
-      <% } %>
-      <td>
-        <%= product.category %>
-      </td>
-      <td>
-        <a href="<%=`/bidding/${product._id}/${product.currentPrice}/placeBid`%>">
-          Place BID
-        </a>
-      </td>
-    </tr>
-    <% }); %>
+        <td>
+          <a>
+            <%= product.productName %>
+          </a>
+        </td>
+        <td>
+          <%= product.description %>
+        </td>
+        <td>
+          <%= product.price %>
+        </td>
+        <td>
+          <%= product.currentPrice %>
+        </td>
+        <td>
+          <% let hours=parseInt(product.remainingTime); let min=parseInt((product.remainingTime *60)%60); let
+            sec=parseInt((product.remainingTime *3600)%60); %>
+            <%= hours %> hours and <%= min %> minutes
+        </td>
+        <% if(product.username_bid){ %>
+          <td>
+            <%= product.username_bid %>
+          </td>
+          <% }else{ %>
+            <td>
+              No bid yet
+            </td>
+            <% } %>
+              <td>
+                <%= product.category %>
+              </td>
+              <td>
+                <a href="<%=`/bidding/${product._id}/${product.currentPrice}/placeBid`%>">
+                  Place BID
+                </a>
+              </td>
+      </tr>
+      <% }); %>
   </tbody>
 </table>

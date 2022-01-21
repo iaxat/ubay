@@ -118,6 +118,7 @@ module.exports = {
     successRedirect: "/",
     successFlash: "Logged in!"
   }),
+  
   //verify that the user sign up information is correct
   validate: async (req, res, next) => {
     await check("email").normalizeEmail({
