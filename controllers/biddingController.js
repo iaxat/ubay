@@ -117,7 +117,6 @@ module.exports = {
           res.render("bidding/bid-expire");
         }
       }
-
       ).catch(err => {
         console.log(err)
       })
